@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+:root {
+  /* Kamala Farms Brand Colors */
+  --color-primary: #4BAF47;
+  --color-primary-dark: #3a8c38;
+  --color-accent: #61CE70;
+  --color-highlight: #F2C200;
+  --color-dark: #1E2831;
+  --color-gray: #6B7280;
+  --color-light-gray: #F3F4F6;
+  --color-white: #FFFFFF;
+
+  --background: #ffffff;
+  --foreground: #1E2831;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Brand Colors */
+  --color-primary: #4BAF47;
+  --color-primary-dark: #3a8c38;
+  --color-accent: #61CE70;
+  --color-highlight: #F2C200;
+  --color-dark: #1E2831;
+  --color-gray-brand: #6B7280;
+  --color-light-gray: #F3F4F6;
+
+  /* Fonts */
+  --font-heading: var(--font-bebas-neue);
+  --font-body: var(--font-roboto);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Heading font utility */
+.font-heading {
+  font-family: var(--font-heading), sans-serif;
+}
+
+.description-green-ticks {
+  white-space: pre-line;
+}
+
+.description-green-ticks span.tick {
+  color: #22c55e; /* green-500 */
+  font-weight: 600;
+}
+
+/* Form Icons */
+.style-line {
+  position: relative;
+}
+
+.style-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #9ca3af;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.icon-name::before {
+  content: "👤";
+}
+
+.icon-phone::before {
+  content: "📞";
+}
+
+.icon-email::before {
+  content: "✉";
+}
+
+.icon-subject::before {
+  content: "📋";
+}
+
+.style-line .line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.style-line input:focus ~ .line,
+.style-line select:focus ~ .line {
+  width: 100%;
+}
+
+
+
+
+
+
