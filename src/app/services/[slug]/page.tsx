@@ -11,15 +11,23 @@ import {
   IconIrrigationSystems,
   IconHydroponicChannels,
   IconPowerBackup,
+  IconFarmSetup,
+  IconAMC,
+  IconCropCycle,
+  IconProfitSharing,
 } from "@/app/service-icons";
 
-const keyComponentIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   IconGIFramework,
   IconCladdingSheets,
   IconCoolingSystems,
   IconIrrigationSystems,
   IconHydroponicChannels,
   IconPowerBackup,
+  IconFarmSetup,
+  IconAMC,
+  IconCropCycle,
+  IconProfitSharing,
 };
 
 // Helper function to parse simple markdown bold syntax
@@ -150,7 +158,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   {section.showKeyComponents && section.keyComponents && (
                     <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
                       {section.keyComponents.map((component, idx) => {
-                        const IconComponent = keyComponentIcons[component.iconName];
+                        const IconComponent = iconMap[component.iconName];
                         const isLast = idx === section.keyComponents!.length - 1;
                         return (
                           <div
@@ -180,12 +188,19 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   {/* Partnership Model if enabled */}
                   {section.showPartnershipModel && section.partnershipFeatures && (
                     <div className="mt-12">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-8">
                         {section.partnershipFeatures.map((feature, idx) => (
                           <div key={idx} className="flex flex-col items-center text-center">
-                            {/* Icon placeholder circle */}
+                            {/* Icon */}
                             <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center mb-6">
-                              <span className="text-gray-400 text-xs">[Icon]</span>
+                              {feature.iconName && iconMap[feature.iconName] ? (
+                                (() => {
+                                  const FeatureIcon = iconMap[feature.iconName!];
+                                  return <FeatureIcon className="w-12 h-12 text-primary" />;
+                                })()
+                              ) : (
+                                <span className="text-gray-400 text-xs">[Icon]</span>
+                              )}
                             </div>
                             {/* Title */}
                             <h4 className="font-heading text-base uppercase tracking-wide text-dark mb-4 font-bold">
@@ -204,6 +219,22 @@ export default async function ServicePage({ params }: ServicePageProps) {
                           {section.footerText}
                         </p>
                       )}
+                    </div>
+                  )}
+
+                  {/* Partner Logos placeholder if enabled */}
+                  {section.showPartnerLogos && (
+                    <div className="mt-12 min-h-[200px] bg-light-gray rounded-lg flex items-center justify-center">
+                      <span className="text-gray-500">[Partner Logos]</span>
+                    </div>
+                  )}
+
+                  {/* Footer Note for full-width sections */}
+                  {section.fullWidth && section.footerNote && (
+                    <div className="mt-8 text-gray-600 leading-relaxed space-y-2">
+                      {section.footerNote.split('\n').map((line, lIndex) => (
+                        <p key={lIndex}>{parseMarkdown(line)}</p>
+                      ))}
                     </div>
                   )}
 
@@ -259,26 +290,65 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
                     {/* Bullet Points if provided */}
                     {section.bulletPoints && section.bulletPoints.length > 0 && (
-                      <ul className="mt-6 space-y-3">
+                      <ul className={`mt-6 space-y-3 ${section.roundBullets || section.numberedPoints ? "list-none" : ""}`}>
                         {section.bulletPoints.map((point, pIndex) => (
                           <li key={pIndex} className="flex items-start gap-3">
-                            <svg
-                              className="w-5 h-5 text-primary flex-shrink-0 mt-1"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
+                            {section.numberedPoints ? (
+                              <span className="text-gray-600 flex-shrink-0 mt-0.5">{pIndex + 1}.</span>
+                            ) : section.roundBullets ? (
+                              <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
+                            ) : (
+                              <svg
+                                className="w-5 h-5 text-primary flex-shrink-0 mt-1"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
+                            )}
                             <span className="text-gray-600 leading-relaxed">{parseMarkdown(point)}</span>
                           </li>
                         ))}
                       </ul>
+                    )}
+
+                    {/* Bullet Items with optional sub-points */}
+                    {section.bulletItems && section.bulletItems.length > 0 && (
+                      <ul className="mt-6 space-y-3 list-none">
+                        {section.bulletItems.map((item, bIndex) => (
+                          <li key={bIndex}>
+                            <div className="flex items-start gap-3">
+                              <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
+                              <span className="text-gray-600 leading-relaxed">{parseMarkdown(item.text)}</span>
+                            </div>
+                            {item.subPoints && item.subPoints.length > 0 && (
+                              <ul className="mt-2 ml-6 space-y-2 list-none">
+                                {item.subPoints.map((sub, sIndex) => (
+                                  <li key={sIndex} className="flex items-start gap-3">
+                                    <span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-2" />
+                                    <span className="text-gray-600 leading-relaxed">{parseMarkdown(sub)}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {/* Footer Note if provided */}
+                    {section.footerNote && (
+                      <div className="mt-6 text-gray-600 leading-relaxed space-y-2">
+                        {section.footerNote.split('\n').map((line, lIndex) => (
+                          <p key={lIndex}>{parseMarkdown(line)}</p>
+                        ))}
+                      </div>
                     )}
 
                     {/* Crop Table if enabled */}

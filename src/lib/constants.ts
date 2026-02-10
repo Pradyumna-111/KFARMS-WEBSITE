@@ -48,6 +48,7 @@ export const NAV_LINKS = [
       { label: "Soil Farming", href: "/services/soil-farming" },
     ],
   },
+  { label: "Product", href: "/product" },
   { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
 ];

@@ -6,6 +6,7 @@ export interface CarouselItem {
 export interface PartnershipFeature {
   title: string;
   description: string;
+  iconName?: string;
 }
 
 export interface CropCategory {
@@ -16,6 +17,11 @@ export interface CropCategory {
 export interface KeyComponent {
   title: string;
   iconName: string;
+}
+
+export interface BulletItem {
+  text: string;
+  subPoints?: string[];
 }
 
 export interface ServiceSection {
@@ -40,6 +46,11 @@ export interface ServiceSection {
   cropFooterText?: string;
   showKeyComponents?: boolean;
   keyComponents?: KeyComponent[];
+  roundBullets?: boolean;
+  footerNote?: string;
+  numberedPoints?: boolean;
+  bulletItems?: BulletItem[];
+  showPartnerLogos?: boolean;
 }
 
 export interface Service {
@@ -74,8 +85,14 @@ export const services: Service[] = [
       {
         title: "Site Audit",
         description:
-          "The site audit is the groundwork for success. During this stage, we carefully evaluate your land to determine:\n\n✓ Suitability for polyhouse construction\n✓ Water availability and irrigation potential\n✓ Climate factors and environmental conditions\n✓ Power access and logistics\n\nBy identifying strengths and challenges upfront, we ensure that the farm design aligns with the land's natural potential, avoiding costly mistakes later.",
+          "The site audit is the groundwork for success. During this stage, we carefully evaluate your land to determine:\n\nBy identifying strengths and challenges upfront, we ensure that the farm design aligns with the land's natural potential, avoiding costly mistakes later.",
         imagePosition: "right",
+        bulletPoints: [
+          "Suitability for polyhouse construction",
+          "Water availability and irrigation potential",
+          "Climate factors and environmental conditions",
+          "Power access and logistics",
+        ],
         buttonText: "Fill the Site Audit Form",
         buttonLink: "#",
       },
@@ -152,7 +169,7 @@ export const services: Service[] = [
       },
     ],
     contactQuote:
-      "From design to harvest-ready. We handle everything so you can focus on growing.",
+      "Ready to build your dream farm? Let's design, construct, and grow it together.",
   },
   {
     slug: "farm-management",
@@ -184,27 +201,31 @@ export const services: Service[] = [
           {
             title: "Farm Setup",
             description: "Design & build your polyhouse or hydroponic system, customized to your land and crop.",
+            iconName: "IconFarmSetup",
           },
           {
             title: "Annual Maintenance Contract (AMC)",
             description: "We take care of operations and maintenance — from crop monitoring to nutrient management — ensuring consistent yield and smooth functioning of your farm.",
+            iconName: "IconAMC",
           },
-          {
-            title: "Second Crop Cycle Management",
-            description: "With our experienced farm management team, we optimize the second cycle performance, implementing data-driven strategies for better growth and efficiency.",
-          },
-          {
+{
             title: "Profit Sharing / Buyback Option",
             description: "At harvest, you can choose to market your produce independently or through Kamala Farms' buyback support — ensuring fair pricing and access to established buyer networks.",
+            iconName: "IconProfitSharing",
           },
         ],
         footerText: "Our turnkey solutions ensure your polyhouse is fully equipped with all productive farm:",
       },
       {
         title: "Why This Model Works",
-        description:
-          "✓ Reduces operational stress for farm owners\n✓ Ensures long-term sustainability and consistent output\n✓ Keeps farms aligned with current market trends\n✓ Offers flexibility — you choose how involved you want to be",
+        description: "",
         imagePosition: "right",
+        bulletPoints: [
+          "Reduces operational stress for farm owners",
+          "Ensures long-term sustainability and consistent output",
+          "Keeps farms aligned with current market trends",
+          "Offers flexibility — you choose how involved you want to be",
+        ],
       },
     ],
     contactQuote:
@@ -232,6 +253,16 @@ export const services: Service[] = [
           "Our training programs are backed by collaborations with leading agricultural and research institutions:",
         imagePosition: "left",
         fullWidth: true,
+        showPartnerLogos: true,
+        footerNote: "These partnerships allow us to provide access to exclusive learning materials, advanced research, and strong industry networks — ensuring our participants learn from the very best.",
+      },
+      {
+        title: "Upcoming Programs",
+        description:
+          "Stay tuned for our **latest workshops, webinars, and farm visits.** This section is continuously updated so you can register for upcoming events and never miss a chance to learn.",
+        imagePosition: "left",
+        fullWidth: true,
+        showPartnerLogos: true,
       },
     ],
     contactQuote:
@@ -258,10 +289,10 @@ export const services: Service[] = [
           "We begin by helping you select the right crops based on demand, climate, and profitability. Once the farm is operational, our team supports you in maintaining quality standards so the produce meets buyer requirements. In return, we commit to purchasing your harvest under a pre-agreed buyback contract.\n\nThis ensures:",
         imagePosition: "right",
         bulletPoints: [
-          "Assured markets for your produce",
-          "Reduced risks of fluctuating prices",
-          "Transparent terms and agreements",
-          "Steady revenue streams for large-scale farms",
+          "**Assured markets for your produce**",
+          "**Reduced risks of fluctuating prices**",
+          "**Transparent terms and agreements**",
+          "**Steady revenue streams for large-scale farms**",
         ],
       },
       {
@@ -272,13 +303,18 @@ export const services: Service[] = [
       },
       {
         title: "Why Choose Us as Your Buyback Partner",
-        description:
-          "**Strong Buyer Network:** We work with wholesale distributors, modern retailers, and institutional buyers.\n\n**Fair Pricing:** Transparent pricing models ensure both farmers and buyers benefit.\n\n**Quality Assurance:** Support with maintaining global standards of hydroponic produce.\n\n**Long-Term Partnership:** Beyond buyback, we guide you in scaling, diversifying crops, and entering new markets.",
+        description: "",
         imagePosition: "right",
+        bulletPoints: [
+          "**Strong Buyer Network:** We work with wholesale distributors, modern retailers, and institutional buyers.",
+          "**Fair Pricing:** Transparent pricing models ensure both farmers and buyers benefit.",
+          "**Quality Assurance:** Support with maintaining global standards of hydroponic produce.",
+          "**Long-Term Partnership:** Beyond buyback, we guide you in scaling, diversifying crops, and entering new markets.",
+        ],
       },
     ],
     contactQuote:
-      "Ready to build your dream farm? Let’s design, construct, and grow it together.",
+      "Building big dreams? Let's make sure your harvest has a home.",
   },
   {
     slug: "subsidy-support",
@@ -299,8 +335,21 @@ export const services: Service[] = [
       {
         title: "What is the NHB Subsidy?",
         description:
-          "The **National Horticulture Board (NHB)** provides financial assistance for protected cultivation, including hydroponic farming.\n\n**Subsidy Rate:**\n✓ **General Areas:** Up to **40% of project cost** (max ₹30 lakh)\n✓ **Hilly & Scheduled Areas:** Up to **50% of project cost** (max ₹37.5 lakh)\n✓ Encourages adoption of **high-value**, **fast-growing crops**\n✓ Eligible for hydroponics, aeroponics, and advanced protected cultivation systems\n✓ Tip: Higher subsidy rates apply in hilly and tribal regions.",
+          "The **National Horticulture Board (NHB)** provides financial assistance for protected cultivation, including hydroponic farming.",
         imagePosition: "left",
+        roundBullets: true,
+        bulletItems: [
+          {
+            text: "**Subsidy Rate:**",
+            subPoints: [
+              "**General Areas:** Up to **40% of project cost** (max ₹30 lakh)",
+              "**Hilly & Scheduled Areas:** Up to **50% of project cost** (max ₹37.5 lakh)",
+            ],
+          },
+          { text: "Encourages adoption of **high-value**, **fast-growing crops**" },
+          { text: "Eligible for hydroponics, aeroponics, and advanced protected cultivation systems" },
+        ],
+        footerNote: "**Tip:** Higher subsidy rates apply in hilly and tribal regions.",
       },
       {
         title: "Eligible Components & Infrastructure",
@@ -315,16 +364,75 @@ export const services: Service[] = [
         imagePosition: "left",
         showCropTable: true,
         cropCategories: [
-          { name: "Leafy Greens", crops: ["Lettuce", "Spinach", "Kale", "Arugula"] },
-          { name: "Herbs", crops: ["Basil", "Mint", "Cilantro", "Parsley"] },
-          { name: "Microgreens", crops: ["Radish", "Broccoli", "Mustard", "Sunflower"] },
-          { name: "Fruiting Vegetables", crops: ["Tomato", "Cucumber", "Pepper", "Strawberry"] },
+          { name: "Leafy Greens", crops: ["Lettuce", "Spinach", "Kale"] },
+          { name: "Herbs", crops: ["Basil", "Mint", "Cilantro"] },
+          { name: "Microgreens", crops: ["Radish", "Broccoli", "Mustard"] },
+          { name: "Fruiting Vegetables", crops: ["Tomato", "Cucumber", "Pepper"] },
         ],
         cropFooterText: "These crops thrive in soil-less systems and ensure faster returns on investment.",
       },
+      {
+        title: "Recent Guideline Updates (2025)",
+        description: "",
+        imagePosition: "right",
+        roundBullets: true,
+        bulletPoints: [
+          "Hydroponics, aeroponics, and automation systems **now officially eligible**",
+          "All materials must comply with **Bureau of Indian Standards (BIS)**",
+          "Beneficiaries are responsible for **maintenance of assets**",
+          "**Project site or crop changes** without prior NHB approval may render the project ineligible",
+        ],
+      },
+      {
+        title: "How Kamala Farms Helps You",
+        description: "We simplify the entire subsidy process for you:",
+        imagePosition: "right",
+        roundBullets: true,
+        bulletPoints: [
+          "**Project Planning:** Detailed Project Reports (DPR) for bank approvals",
+          "**Application Support:** Guidance for NHB application and bank loan processing",
+          "**Turnkey Hydroponics:** End-to-end setup ready for subsidy compliance",
+          "**Subsidy Claim Assistance:** Documentation, inspections, and approvals",
+        ],
+        footerNote: "**CTA:** [Start Your Subsidy-Assisted Hydroponic Farm]",
+      },
+      {
+        title: "Step-by-Step Application Process",
+        description: "",
+        imagePosition: "right",
+        numberedPoints: true,
+        bulletPoints: [
+          "**Prepare DPR:** Outline project scope, finances, and implementation plan",
+          "**Submit Application:** To NHB State Office or NHB Headquarters",
+          "**Bank Appraisal:** Secure term loan for project funding",
+          "**Obtain Approval:** NHB issues Letter of Intent (LoI)",
+          "**Implement Project:** Set up hydroponic systems as per approved plan",
+          "**Inspection & Subsidy Claim:** NHB & bank joint inspection, then submit claim",
+        ],
+      },
+      {
+        title: "IMPORTANT NOTES",
+        description: "",
+        imagePosition: "right",
+        roundBullets: true,
+        bulletItems: [
+          { text: "Civil work cost **≤30%** of project cost" },
+          { text: "All fund transfers are **digital via CDP Suraksha Portal**" },
+          {
+            text: "Recurring inputs (seeds/planting material) subsidy:",
+            subPoints: [
+              "**100%** first season",
+              "**50%** second season",
+              "**No subsidy** from third season onwards",
+            ],
+          },
+          { text: "Prior approval is required for **crop or site changes**" },
+        ],
+        footerNote: "**CTA:**\n**[Start Your Subsidy-Assisted Hydroponic Farm]**\n\n**Unlock modern farming with government support and Kamala Farms' expertise.**",
+      },
     ],
     contactQuote:
-      "Government support unlocks your farm's potential. Let's get you the funding you deserve.",
+      "Ready to build your dream farm? Let's design, construct, and grow it together.",
   },
   {
     slug: "recycling",
@@ -333,8 +441,52 @@ export const services: Service[] = [
       "Sustainable plastic recycling solutions for agricultural operations.",
     fullDescription:
       "Our recycling service addresses the environmental impact of agricultural plastics.",
+    tagline: "Turning Plastic Waste into Sustainable Value",
+    sections: [
+      {
+        title: "Recycling",
+        description:
+          "We source mixed plastics from **aggregators**, **rag pickers**, and **collection centres**. Each consignment is weighed, logged, and verified for quality.",
+        imagePosition: "left",
+      },
+      {
+        title: "PET Bottle Baling",
+        description:
+          "PET bottles are compressed into **150–170 kg bales** after daily machine checks. Each bale is strapped, labeled, and stored on pallets in a dry covered space.",
+        imagePosition: "right",
+      },
+      {
+        title: "Mixed Plastic Handling",
+        description:
+          "Non-PET plastics are stored separately and sold in bulk to **recyclers and processors** without segregation.",
+        imagePosition: "left",
+      },
+      {
+        title: "Sales and Dispatch",
+        description:
+          "We supply **PET bales to recyclers, fiber manufacturers, and exporters**, while mixed plastic is sold to smaller traders. Documentation and transport are arranged for every consignment.",
+        imagePosition: "right",
+      },
+      {
+        title: "Safety and Compliance",
+        description:
+          "Workers are equipped with **gloves, masks, aprons,** and trained in machine safety. Fire extinguishers and first-aid kits are always accessible.",
+        imagePosition: "left",
+      },
+      {
+        title: "Quality Checks",
+        description:
+          "PET bales are inspected to ensure:",
+        imagePosition: "right",
+        bulletPoints: [
+          "**<5% contamination**",
+          "**Uniform weight & size**",
+          "**Dry and moisture-free (export-ready)**",
+        ],
+      },
+    ],
     contactQuote:
-      "Sustainable farming starts with responsible waste management.",
+      "Building big dreams? Let's make sure your harvest has a home.",
   },
   {
     slug: "soil-farming",
@@ -343,8 +495,52 @@ export const services: Service[] = [
       "Traditional earth-based cultivation methods with modern techniques.",
     fullDescription:
       "Combining traditional soil farming wisdom with modern agricultural science, we help farmers optimize their soil-based cultivation.",
+    tagline: "Grow Naturally in Controlled Environments",
+    sections: [
+      {
+        title: "Soil Farming, Redefined",
+        description:
+          "At Kamala Farms, we understand that not every crop or farmer's vision fits within hydroponics — and that's where **Soil Farming inside Polyhouses** comes in.\n\nBy combining the **natural strength of soil cultivation** with the **controlled environment of a polyhouse,** we help farmers grow high-quality produce with reduced risks and enhanced efficiency.",
+        imagePosition: "left",
+      },
+      {
+        title: "Why Soil Farming Inside Polyhouses?",
+        description:
+          "Traditional farming is often affected by unpredictable weather, pests, and water stress. A polyhouse solves these challenges by creating a **climate-controlled shield** that protects your crops year-round.\n\nThis approach lets farmers cultivate a wide range of crops — from vegetables and flowers to fruiting plants — while still using organic soil practices.",
+        imagePosition: "right",
+      },
+      {
+        title: "Our Process",
+        description:
+          "We begin with soil testing and preparation, ensuring the right nutrient balance for your chosen crops. Then we set up a **customized irrigation and fertigation system** designed to optimize water and nutrient use.\n\nOur experts guide you through best practices in crop rotation, soil health management, and organic pest control, ensuring long-term productivity and sustainability.",
+        imagePosition: "left",
+      },
+      {
+        title: "Benefits of Soil Farming in Polyhouses",
+        description: "",
+        imagePosition: "left",
+        bulletPoints: [
+          "Extended growing seasons and consistent yields",
+          "Better temperature and humidity control",
+          "Protection from pests, diseases, and heavy rains",
+          "Optimized water use through drip irrigation systems",
+          "Suitable for high-value crops and organic farming",
+        ],
+      },
+      {
+        title: "Who Can Benefit",
+        description:
+          "This model is ideal for:",
+        imagePosition: "right",
+        bulletPoints: [
+          "Farmers transitioning from open-field to protected cultivation",
+          "Organic growers seeking year-round production",
+          "Entrepreneurs looking to scale sustainable soil-based farms",
+        ],
+      },
+    ],
     contactQuote:
-      "Healthy soil, healthy crops, healthy profits. Let's start with the foundation.",
+      "Explore Soil Farming Solutions",
   },
 ];
 
