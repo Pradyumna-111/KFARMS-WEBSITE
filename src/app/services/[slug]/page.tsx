@@ -4,6 +4,23 @@ import { SectionWrapper, Heading, Button } from "@/components/ui";
 import { services } from "@/content/services";
 import { ServiceContactForm } from "@/components/ServiceContactForm";
 import { PolyhouseCarousel } from "@/components/PolyhouseCarousel";
+import {
+  IconGIFramework,
+  IconCladdingSheets,
+  IconCoolingSystems,
+  IconIrrigationSystems,
+  IconHydroponicChannels,
+  IconPowerBackup,
+} from "@/app/service-icons";
+
+const keyComponentIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  IconGIFramework,
+  IconCladdingSheets,
+  IconCoolingSystems,
+  IconIrrigationSystems,
+  IconHydroponicChannels,
+  IconPowerBackup,
+};
 
 // Helper function to parse simple markdown bold syntax
 function parseMarkdown(text: string) {
@@ -45,7 +62,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   return (
     <>
       {/* HERO BANNER */}
-      <section className="relative flex min-h-[450px] items-center justify-center bg-light-gray">
+      <section className="relative flex h-[90vh] min-h-[600px] items-center justify-center bg-light-gray">
         {/* Background image placeholder - replace with actual image */}
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url("")' }} />
         <div className="relative z-10 text-center text-dark px-4">
@@ -69,12 +86,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* SERVICE SECTIONS */}
-      <SectionWrapper>
-        {/* SERVICE SECTIONS */}
-        {service.sections && service.sections.length > 0 && (
-          <div className="space-y-20">
-            {service.sections.map((section, index) => (
-              section.fullWidth ? (
+      {service.sections && service.sections.length > 0 && (
+        <>
+          {service.sections.map((section, index) => (
+            <SectionWrapper key={index} background={index % 2 === 0 ? "white" : "light"}>
+              {section.fullWidth ? (
                 // Full-width layout without image
                 <div key={index} className="w-full">
                   {/* Subtitle if provided */}
@@ -128,6 +144,37 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   {/* Carousel if enabled */}
                   {section.showCarousel && section.carouselItems && (
                     <PolyhouseCarousel items={section.carouselItems} />
+                  )}
+
+                  {/* Key Components if enabled */}
+                  {section.showKeyComponents && section.keyComponents && (
+                    <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+                      {section.keyComponents.map((component, idx) => {
+                        const IconComponent = keyComponentIcons[component.iconName];
+                        const isLast = idx === section.keyComponents!.length - 1;
+                        return (
+                          <div
+                            key={idx}
+                            className={`flex flex-col items-center text-center px-4 py-4 ${
+                              !isLast ? "border-r border-gray-300" : ""
+                            }`}
+                          >
+                            <div className="w-20 h-20 mb-4 text-primary">
+                              {IconComponent ? (
+                                <IconComponent className="w-full h-full" />
+                              ) : (
+                                <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
+                                  <span className="text-gray-400 text-xs">[Icon]</span>
+                                </div>
+                              )}
+                            </div>
+                            <h4 className="font-heading text-sm uppercase tracking-wide text-dark font-medium">
+                              {component.title}
+                            </h4>
+                          </div>
+                        );
+                      })}
+                    </div>
                   )}
 
                   {/* Partnership Model if enabled */}
@@ -186,13 +233,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 // Two-column layout with image
                 <div
                   key={index}
-                  className={`grid grid-cols-1 gap-12 lg:grid-cols-2 items-center ${
-                    section.imagePosition === "right" ? "lg:auto" : ""
-                  }`}
+                  className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-stretch"
                 >
                   {/* Image Column */}
                   <div
-                    className={`h-80 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center overflow-hidden ${
+                    className={`min-h-[320px] rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center overflow-hidden ${
                       section.imagePosition === "right" ? "lg:order-2" : ""
                     }`}
                   >
@@ -202,7 +247,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   </div>
 
                   {/* Text Column */}
-                  <div className={section.imagePosition === "right" ? "lg:order-1" : ""}>
+                  <div className={`flex flex-col justify-start ${section.imagePosition === "right" ? "lg:order-1" : ""}`}>
                     <h3 className="font-heading text-3xl md:text-4xl uppercase text-dark mb-6">
                       {section.title}
                     </h3>
@@ -294,26 +339,22 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     )}
                   </div>
                 </div>
-              )
-            ))}
-          </div>
-        )}
-      </SectionWrapper>
+              )}
+            </SectionWrapper>
+          ))}
+        </>
+      )}
 
       {/* WHY IT MATTERS SECTION */}
       {service.whyItMatters && (
-        <section className="bg-light-gray py-20">
-          <SectionWrapper>
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-heading text-4xl md:text-5xl uppercase text-dark mb-8">
-                Why It Matters
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                {service.whyItMatters}
-              </p>
-            </div>
-          </SectionWrapper>
-        </section>
+        <SectionWrapper background="light">
+          <h2 className="font-heading text-4xl md:text-5xl uppercase text-dark mb-8">
+            Why It Matters
+          </h2>
+          <p className="text-lg text-gray-600 leading-relaxed">
+            {service.whyItMatters}
+          </p>
+        </SectionWrapper>
       )}
 
       {/* CONTACT SECTION */}
@@ -338,7 +379,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </div>
 
           {/* Right Side - Contact Form */}
-          <div className="bg-white p-10 transition-all duration-300" style={{ marginLeft: '-50px' }}>
+          <div className="bg-white p-10 transition-all duration-300 lg:-ml-12">
             <ServiceContactForm />
           </div>
         </div>

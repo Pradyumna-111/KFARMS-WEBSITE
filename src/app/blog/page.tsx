@@ -40,7 +40,7 @@ export default function BlogPage() {
   return (
     <>
       {/* HERO BANNER */}
-      <section className="relative flex min-h-[400px] items-center justify-center bg-dark">
+      <section className="relative flex h-[90vh] min-h-[600px] items-center justify-center bg-dark">
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="font-heading text-5xl md:text-7xl uppercase mb-4">Blog</h1>

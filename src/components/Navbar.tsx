@@ -9,9 +9,11 @@ import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const showWhiteBg = isScrolled || !isHomePage;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +27,7 @@ export default function Navbar() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
+        showWhiteBg
           ? "bg-white shadow-md"
           : "bg-transparent"
       )}

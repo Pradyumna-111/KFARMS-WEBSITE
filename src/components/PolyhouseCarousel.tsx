@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 
 interface CarouselItem {
   title: string;
@@ -13,10 +13,12 @@ interface PolyhouseCarouselProps {
 
 export function PolyhouseCarousel({ items }: PolyhouseCarouselProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   const scroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
-      const scrollAmount = carouselRef.current.clientWidth * 0.32; // Scroll by one card width
+      const scrollAmount = carouselRef.current.clientWidth * 0.5;
       const newScrollLeft =
         carouselRef.current.scrollLeft +
         (direction === "left" ? -scrollAmount : scrollAmount);
@@ -28,46 +30,75 @@ export function PolyhouseCarousel({ items }: PolyhouseCarouselProps) {
     }
   };
 
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCursorPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  }, []);
+
+  const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const midpoint = rect.width / 2;
+
+    if (clickX < midpoint) {
+      scroll("left");
+    } else {
+      scroll("right");
+    }
+  }, []);
+
   return (
     <div className="relative mt-12 w-full">
       {/* Carousel Container */}
       <div
         ref={carouselRef}
-        className="flex overflow-x-auto gap-0 snap-x snap-mandatory scroll-smooth carousel-scrollbar-hide"
+        className="flex overflow-x-auto gap-4 snap-x snap-mandatory scroll-smooth carousel-scrollbar-hide"
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
+          cursor: "none",
         }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        onClick={handleClick}
       >
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 snap-start w-[83.33%] md:w-[32%]"
+            className="flex-shrink-0 snap-start w-[85%] md:w-[48%]"
           >
             <div
               className="relative bg-light-gray flex items-center justify-center"
               style={{ aspectRatio: "4/3" }}
             >
               {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-dark/60 flex items-center justify-center">
+              <div className="absolute inset-0 bg-dark/60 flex flex-col items-center justify-center pointer-events-none">
                 <h4 className="text-white text-xl md:text-2xl font-heading uppercase text-center px-4">
                   {item.title}
                 </h4>
+                <p className="text-white/70 text-sm mt-2">Text here</p>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Navigation Buttons - Centered vertically in the carousel */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-4 pointer-events-none z-10">
-        <button
-          onClick={() => scroll("left")}
-          className="pointer-events-auto w-12 h-12 md:w-14 md:h-14 rounded-full bg-dark text-white flex items-center justify-center hover:bg-dark/80 transition-colors duration-200 shadow-lg"
-          aria-label="Previous"
+      {/* Custom Cursor - follows mouse on hover */}
+      {isHovering && (
+        <div
+          className="pointer-events-none absolute z-20 flex items-center gap-1 bg-dark/90 rounded-full px-3 py-2 transition-opacity duration-150"
+          style={{
+            left: cursorPos.x,
+            top: cursorPos.y,
+            transform: "translate(-50%, -50%)",
+          }}
         >
           <svg
-            className="w-6 h-6"
+            className="w-4 h-4 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -79,14 +110,8 @@ export function PolyhouseCarousel({ items }: PolyhouseCarouselProps) {
               d="M15 19l-7-7 7-7"
             />
           </svg>
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          className="pointer-events-auto w-12 h-12 md:w-14 md:h-14 rounded-full bg-dark text-white flex items-center justify-center hover:bg-dark/80 transition-colors duration-200 shadow-lg"
-          aria-label="Next"
-        >
           <svg
-            className="w-6 h-6"
+            className="w-4 h-4 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -98,8 +123,8 @@ export function PolyhouseCarousel({ items }: PolyhouseCarouselProps) {
               d="M9 5l7 7-7 7"
             />
           </svg>
-        </button>
-      </div>
+        </div>
+      )}
 
       <style jsx>{`
         .carousel-scrollbar-hide::-webkit-scrollbar {

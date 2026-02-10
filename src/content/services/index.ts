@@ -13,6 +13,11 @@ export interface CropCategory {
   crops: string[];
 }
 
+export interface KeyComponent {
+  title: string;
+  iconName: string;
+}
+
 export interface ServiceSection {
   title: string;
   description: string;
@@ -33,6 +38,8 @@ export interface ServiceSection {
   showCropTable?: boolean;
   cropCategories?: CropCategory[];
   cropFooterText?: string;
+  showKeyComponents?: boolean;
+  keyComponents?: KeyComponent[];
 }
 
 export interface Service {
@@ -73,7 +80,7 @@ export const services: Service[] = [
         buttonLink: "#",
       },
       {
-        title: "Detailed Project Report",
+        title: "Detailed Project Report (DPR)",
         description:
           "Once the audit is complete, we prepare a comprehensive DPR — a roadmap that outlines every detail of your future farm. This report includes the polyhouse layout, hydroponic system design, cost estimates, timelines, and expected ROI. It serves as a crystal-clear guide, helping you visualize the project before construction even begins.",
         imagePosition: "left",
@@ -133,6 +140,15 @@ export const services: Service[] = [
         fullWidth: true,
         centerHeading: true,
         largeHeading: true,
+        showKeyComponents: true,
+        keyComponents: [
+          { title: "Strong galvanized iron (GI) framework", iconName: "IconGIFramework" },
+          { title: "UV-stabilized cladding sheets and shading nets", iconName: "IconCladdingSheets" },
+          { title: "Cooling systems (fans, pads, ventilation setups)", iconName: "IconCoolingSystems" },
+          { title: "Irrigation and fertigation systems", iconName: "IconIrrigationSystems" },
+          { title: "Hydroponic channels", iconName: "IconHydroponicChannels" },
+          { title: "Power and backup solutions", iconName: "IconPowerBackup" },
+        ],
       },
     ],
     contactQuote:
