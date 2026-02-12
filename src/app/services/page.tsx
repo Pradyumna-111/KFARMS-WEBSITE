@@ -73,7 +73,12 @@ export default function ServicesPage() {
   return (
     <>
       {/* HERO BANNER */}
-      <section className="relative flex h-[90vh] min-h-[600px] items-center justify-center bg-dark">
+      <section className="relative flex h-[calc(90vh-88px)] min-h-[512px] mt-[88px] items-center justify-center bg-dark">
+        <img
+          src="/images/hero/our-services-hero.jpg"
+          alt="Our Services"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl uppercase mb-6">

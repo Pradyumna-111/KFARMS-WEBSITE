@@ -70,7 +70,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   return (
     <>
       {/* HERO BANNER */}
-      <section className="relative flex h-[90vh] min-h-[600px] items-center justify-center bg-light-gray">
+      <section className="relative flex h-[calc(90vh-88px)] min-h-[512px] mt-[88px] items-center justify-center bg-light-gray">
         {service.heroImage && (
           <img
             src={service.heroImage}
@@ -78,24 +78,29 @@ export default async function ServicePage({ params }: ServicePageProps) {
             className="absolute inset-0 h-full w-full object-cover"
           />
         )}
-        <div className="relative z-10 text-center text-dark px-4">
-          <h1 className="font-heading text-5xl md:text-7xl uppercase mb-6">
-            Our Services
-          </h1>
-          <p className="text-2xl md:text-3xl max-w-3xl mx-auto font-heading uppercase">
-            {service.tagline || "Laying the foundation for your farm's success"}
-          </p>
-          {service.heroButtonText && service.heroButtonLink && (
-            <div className="mt-8 flex justify-center">
-              <a
-                href={service.heroButtonLink}
-                className="inline-flex items-center gap-2 bg-primary px-5 py-2.5 font-heading text-sm uppercase tracking-wider text-white transition-colors hover:bg-primary-dark"
-              >
-                {service.heroButtonText}
-              </a>
+        {service.heroOverlay !== false && (
+          <>
+            <div className="absolute inset-0 bg-black/50" />
+            <div className="relative z-10 text-center text-white px-4">
+              <h1 className="font-heading text-5xl md:text-7xl uppercase mb-6">
+                Our Services
+              </h1>
+              <p className="text-2xl md:text-3xl max-w-3xl mx-auto font-heading uppercase">
+                {service.tagline || "Laying the foundation for your farm's success"}
+              </p>
+              {service.heroButtonText && service.heroButtonLink && (
+                <div className="mt-8 flex justify-center">
+                  <a
+                    href={service.heroButtonLink}
+                    className="inline-flex items-center gap-2 bg-primary px-5 py-2.5 font-heading text-sm uppercase tracking-wider text-white transition-colors hover:bg-primary-dark"
+                  >
+                    {service.heroButtonText}
+                  </a>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </>
+        )}
       </section>
 
       {/* SERVICE SECTIONS */}

@@ -67,6 +67,7 @@ export interface Service {
   contactQuote?: string;
   heroButtonText?: string;
   heroButtonLink?: string;
+  heroOverlay?: boolean;
 }
 
 export const services: Service[] = [
@@ -78,7 +79,7 @@ export const services: Service[] = [
     fullDescription:
       "Our comprehensive site design and planning service ensures your farm is optimized for maximum yield and efficiency. We conduct detailed site assessments, evaluate environmental factors, and create customized layouts that maximize land utilization while minimizing operational challenges.",
     tagline: "Laying the foundation for your farm's success",
-    heroImage: "/images/services/site-design-planning/hero.jpg",
+    heroImage: "/images/hero/site-design-planning-hero.jpg",
     contactImage: "/images/services/contact.jpg",
     sections: [
       {
@@ -124,7 +125,7 @@ export const services: Service[] = [
     fullDescription:
       "From blueprint to harvest-ready, our turnkey setup service handles every aspect of your farm build.",
     tagline: "from bare land to thriving polyhouse farms",
-    heroImage: "/images/services/turnkey-setup/hero.jpg",
+    heroImage: "/images/hero/turnkey-setup-hero.jpg",
     contactImage: "/images/services/contact.jpg",
     sections: [
       {
@@ -187,7 +188,7 @@ export const services: Service[] = [
     fullDescription:
       "Our farm management service provides continuous support for day-to-day crop operations.",
     tagline: "From Setup to Success — Seamless Farm Management with Kamala Farms",
-    heroImage: "/images/services/farm-management/hero.jpg",
+    heroImage: "/images/hero/farm-management-hero.jpg",
     contactImage: "/images/services/contact.jpg",
     heroButtonText: "Contact Us",
     heroButtonLink: "/contact",
@@ -250,7 +251,7 @@ export const services: Service[] = [
     fullDescription:
       "We offer hands-on training programs covering hydroponics, protected cultivation, and crop management.",
     tagline: "Learn Hydroponics Where It Happens — On the Farm",
-    heroImage: "/images/services/training/hero.jpg",
+    heroImage: "/images/hero/training-hero.jpeg",
     contactImage: "/images/services/contact.jpg",
     sections: [
       {
@@ -289,7 +290,7 @@ export const services: Service[] = [
     fullDescription:
       "Our contract farming program provides farmers with market assurance through guaranteed buyback agreements.",
     tagline: "Guaranteed markets for your hydroponic produce",
-    heroImage: "/images/services/contract-farming/hero.jpg",
+    heroImage: "/images/hero/contract-farming-buyback-hero.jpg",
     contactImage: "/images/services/contact.jpg",
     sections: [
       {
@@ -343,6 +344,8 @@ export const services: Service[] = [
     fullDescription:
       "Navigate the complex landscape of government agricultural subsidies and schemes with our expert guidance.",
     tagline: "From Bare Land to Thriving Polyhouse Farms",
+    heroImage: "/images/hero/subsidy-hero.jpg",
+    heroOverlay: false,
     sections: [
       {
         title: "Subsidy",
@@ -461,7 +464,7 @@ export const services: Service[] = [
     fullDescription:
       "Our recycling service addresses the environmental impact of agricultural plastics.",
     tagline: "Turning Plastic Waste into Sustainable Value",
-    heroImage: "/images/services/recycling/hero.jpg",
+    heroImage: "/images/hero/recycling-hero.jpg",
     contactImage: "/images/services/contact.jpg",
     sections: [
       {
@@ -523,7 +526,7 @@ export const services: Service[] = [
     fullDescription:
       "Combining traditional soil farming wisdom with modern agricultural science, we help farmers optimize their soil-based cultivation.",
     tagline: "Grow Naturally in Controlled Environments",
-    heroImage: "/images/services/soil-farming/hero.jpg",
+    heroImage: "/images/hero/soil-farming-hero.jpg",
     contactImage: "/images/services/contact.jpg",
     sections: [
       {

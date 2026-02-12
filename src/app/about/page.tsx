@@ -48,9 +48,9 @@ export default function AboutPage() {
   return (
     <>
       {/* HERO BANNER */}
-      <section className="relative flex h-[90vh] min-h-[600px] items-center justify-center bg-dark">
+      <section className="relative flex h-[calc(90vh-88px)] min-h-[512px] mt-[88px] items-center justify-center bg-dark">
         <img
-          src="/images/hero/about-us.png"
+          src="/images/hero/about-us-hero.jpg"
           alt="About Kamala Farms"
           className="absolute inset-0 h-full w-full object-cover"
         />
