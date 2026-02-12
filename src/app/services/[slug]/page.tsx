@@ -71,8 +71,13 @@ export default async function ServicePage({ params }: ServicePageProps) {
     <>
       {/* HERO BANNER */}
       <section className="relative flex h-[90vh] min-h-[600px] items-center justify-center bg-light-gray">
-        {/* Background image placeholder - replace with actual image */}
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url("")' }} />
+        {service.heroImage && (
+          <img
+            src={service.heroImage}
+            alt={service.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
         <div className="relative z-10 text-center text-dark px-4">
           <h1 className="font-heading text-5xl md:text-7xl uppercase mb-6">
             Our Services
@@ -272,9 +277,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
                       section.imagePosition === "right" ? "lg:order-2" : ""
                     }`}
                   >
-                    <div className="w-full h-full bg-light-gray flex items-center justify-center">
-                      <span className="text-gray-500">[{section.title} Image]</span>
-                    </div>
+                    {section.image ? (
+                      <img
+                        src={section.image}
+                        alt={section.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-light-gray flex items-center justify-center">
+                        <span className="text-gray-500">[{section.title} Image]</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Text Column */}
@@ -442,9 +455,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </blockquote>
             </div>
             <div className="h-80 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center overflow-hidden">
-              <div className="w-full h-full bg-light-gray flex items-center justify-center">
-                <span className="text-gray-500">[Contact Image]</span>
-              </div>
+              {service.contactImage ? (
+                <img
+                  src={service.contactImage}
+                  alt="Contact Kamala Farms"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-light-gray flex items-center justify-center">
+                  <span className="text-gray-500">[Contact Image]</span>
+                </div>
+              )}
             </div>
           </div>
 

@@ -72,15 +72,21 @@ export function PolyhouseCarousel({ items }: PolyhouseCarouselProps) {
             className="flex-shrink-0 snap-start w-[85%] md:w-[48%]"
           >
             <div
-              className="relative bg-light-gray flex items-center justify-center"
+              className="relative bg-light-gray flex items-center justify-center overflow-hidden"
               style={{ aspectRatio: "4/3" }}
             >
+              {item.image && (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              )}
               {/* Dark Overlay */}
               <div className="absolute inset-0 bg-dark/60 flex flex-col items-center justify-center pointer-events-none">
                 <h4 className="text-white text-xl md:text-2xl font-heading uppercase text-center px-4">
                   {item.title}
                 </h4>
-                <p className="text-white/70 text-sm mt-2">Text here</p>
               </div>
             </div>
           </div>

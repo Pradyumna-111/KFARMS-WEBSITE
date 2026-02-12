@@ -28,6 +28,7 @@ export interface ServiceSection {
   title: string;
   description: string;
   imagePosition: "left" | "right";
+  image?: string;
   buttonText?: string;
   buttonLink?: string;
   fullWidth?: boolean;
@@ -59,6 +60,8 @@ export interface Service {
   shortDescription: string;
   fullDescription: string;
   tagline?: string;
+  heroImage?: string;
+  contactImage?: string;
   sections?: ServiceSection[];
   whyItMatters?: string;
   contactQuote?: string;
@@ -75,18 +78,22 @@ export const services: Service[] = [
     fullDescription:
       "Our comprehensive site design and planning service ensures your farm is optimized for maximum yield and efficiency. We conduct detailed site assessments, evaluate environmental factors, and create customized layouts that maximize land utilization while minimizing operational challenges.",
     tagline: "Laying the foundation for your farm's success",
+    heroImage: "/images/services/site-design-planning/hero.jpg",
+    contactImage: "/images/services/contact.jpg",
     sections: [
       {
         title: "Site Design & Planning",
         description:
           "Every great farm begins with a smart plan. Our site design and planning service ensures your land is optimized for polyhouse construction and hydroponic farming right from day one.\n\nBefore construction begins, the most important step is understanding the land. Our team conducts a site audit to assess your location's unique conditions, including soil, water, sunlight, wind patterns, and accessibility. Based on this, we craft a detailed project report (DPR) tailored to your specific needs, ensuring that every square foot of your farm is designed for optimal productivity and long-term efficiency.",
         imagePosition: "left",
+        image: "/images/services/site-design-planning/site-design-planning.jpg",
       },
       {
         title: "Site Audit",
         description:
           "The site audit is the groundwork for success. During this stage, we carefully evaluate your land to determine:\n\nBy identifying strengths and challenges upfront, we ensure that the farm design aligns with the land's natural potential, avoiding costly mistakes later.",
         imagePosition: "right",
+        image: "/images/services/site-design-planning/site-audit.jpg",
         bulletPoints: [
           "Suitability for polyhouse construction",
           "Water availability and irrigation potential",
@@ -101,6 +108,7 @@ export const services: Service[] = [
         description:
           "Once the audit is complete, we prepare a comprehensive DPR — a roadmap that outlines every detail of your future farm. This report includes the polyhouse layout, hydroponic system design, cost estimates, timelines, and expected ROI. It serves as a crystal-clear guide, helping you visualize the project before construction even begins.",
         imagePosition: "left",
+        image: "/images/services/site-design-planning/detailed-project-report.jpg",
       },
     ],
     whyItMatters:
@@ -116,6 +124,8 @@ export const services: Service[] = [
     fullDescription:
       "From blueprint to harvest-ready, our turnkey setup service handles every aspect of your farm build.",
     tagline: "from bare land to thriving polyhouse farms",
+    heroImage: "/images/services/turnkey-setup/hero.jpg",
+    contactImage: "/images/services/contact.jpg",
     sections: [
       {
         title: "Turnkey Setup",
@@ -142,11 +152,9 @@ export const services: Service[] = [
         largeHeading: true,
         showCarousel: true,
         carouselItems: [
-          { title: "Naturally Ventilated Polyhouse" },
-          { title: "Fan & Pad Polyhouse" },
-          { title: "Climate-Controlled Polyhouse" },
-          { title: "Shade Net House" },
-          { title: "Tunnel Polyhouse" },
+          { title: "Naturally Ventilated Polyhouse", image: "/images/services/turnkey-setup/naturally-ventilated.png" },
+          { title: "Fan & Pad Polyhouse", image: "/images/services/turnkey-setup/fan-and-pad.jpg" },
+          { title: "Tunnel Polyhouse", image: "/images/services/turnkey-setup/tunnel-polyhouse.jpg" },
         ],
       },
       {
@@ -179,6 +187,8 @@ export const services: Service[] = [
     fullDescription:
       "Our farm management service provides continuous support for day-to-day crop operations.",
     tagline: "From Setup to Success — Seamless Farm Management with Kamala Farms",
+    heroImage: "/images/services/farm-management/hero.jpg",
+    contactImage: "/images/services/contact.jpg",
     heroButtonText: "Contact Us",
     heroButtonLink: "/contact",
     sections: [
@@ -220,6 +230,7 @@ export const services: Service[] = [
         title: "Why This Model Works",
         description: "",
         imagePosition: "right",
+        image: "/images/services/farm-management/why-this-model-works.png",
         bulletPoints: [
           "Reduces operational stress for farm owners",
           "Ensures long-term sustainability and consistent output",
@@ -239,6 +250,8 @@ export const services: Service[] = [
     fullDescription:
       "We offer hands-on training programs covering hydroponics, protected cultivation, and crop management.",
     tagline: "Learn Hydroponics Where It Happens — On the Farm",
+    heroImage: "/images/services/training/hero.jpg",
+    contactImage: "/images/services/contact.jpg",
     sections: [
       {
         title: "Webinars & Knowledge Sessions",
@@ -276,18 +289,22 @@ export const services: Service[] = [
     fullDescription:
       "Our contract farming program provides farmers with market assurance through guaranteed buyback agreements.",
     tagline: "Guaranteed markets for your hydroponic produce",
+    heroImage: "/images/services/contract-farming/hero.jpg",
+    contactImage: "/images/services/contact.jpg",
     sections: [
       {
         title: "Contract Farming and Buyback",
         description:
           "For large-scale projects (10 acres and above), we offer contract farming and buyback agreements that guarantee markets for your produce. You focus on growing, while we take care of selling.\n\nOne of the biggest challenges in agriculture is finding reliable buyers. With our contract farming and buyback programs, you don't have to worry about markets or unsold produce. We provide assured purchase agreements for hydroponic crops, making your investment more secure and profitable.\n\nThis model is especially designed for investors and entrepreneurs who want to establish commercial-scale hydroponic farms of 10 acres or more. By partnering with us, you not only get the advantage of our farming expertise but also access to our established buyer network.",
         imagePosition: "left",
+        image: "/images/services/contract-farming/contract-farming-and-buyback.jpg",
       },
       {
         title: "How Contract Farming Works",
         description:
           "We begin by helping you select the right crops based on demand, climate, and profitability. Once the farm is operational, our team supports you in maintaining quality standards so the produce meets buyer requirements. In return, we commit to purchasing your harvest under a pre-agreed buyback contract.\n\nThis ensures:",
         imagePosition: "right",
+        image: "/images/services/contract-farming/how-contract-farming-works.jpg",
         bulletPoints: [
           "**Assured markets for your produce**",
           "**Reduced risks of fluctuating prices**",
@@ -300,11 +317,13 @@ export const services: Service[] = [
         description:
           "Hydroponics requires a market-driven approach. While smaller farms can sell directly to local buyers, commercial-scale projects (10+ acres) produce volumes that need guaranteed outlets. Our buyback program is structured to match these volumes, ensuring your produce is absorbed into wholesale markets, retail chains, and bulk buyers.",
         imagePosition: "left",
+        image: "/images/services/contract-farming/why-10-acres-and-above.jpg",
       },
       {
         title: "Why Choose Us as Your Buyback Partner",
         description: "",
         imagePosition: "right",
+        image: "/images/services/contract-farming/why-choose-us.jpg",
         bulletPoints: [
           "**Strong Buyer Network:** We work with wholesale distributors, modern retailers, and institutional buyers.",
           "**Fair Pricing:** Transparent pricing models ensure both farmers and buyers benefit.",
@@ -442,42 +461,50 @@ export const services: Service[] = [
     fullDescription:
       "Our recycling service addresses the environmental impact of agricultural plastics.",
     tagline: "Turning Plastic Waste into Sustainable Value",
+    heroImage: "/images/services/recycling/hero.jpg",
+    contactImage: "/images/services/contact.jpg",
     sections: [
       {
         title: "Recycling",
         description:
           "We source mixed plastics from **aggregators**, **rag pickers**, and **collection centres**. Each consignment is weighed, logged, and verified for quality.",
         imagePosition: "left",
+        image: "/images/services/recycling/recycling.jpg",
       },
       {
         title: "PET Bottle Baling",
         description:
           "PET bottles are compressed into **150–170 kg bales** after daily machine checks. Each bale is strapped, labeled, and stored on pallets in a dry covered space.",
         imagePosition: "right",
+        image: "/images/services/recycling/pet-bottle-baling.jpg",
       },
       {
         title: "Mixed Plastic Handling",
         description:
           "Non-PET plastics are stored separately and sold in bulk to **recyclers and processors** without segregation.",
         imagePosition: "left",
+        image: "/images/services/recycling/mixed-plastic-handling.jpg",
       },
       {
         title: "Sales and Dispatch",
         description:
           "We supply **PET bales to recyclers, fiber manufacturers, and exporters**, while mixed plastic is sold to smaller traders. Documentation and transport are arranged for every consignment.",
         imagePosition: "right",
+        image: "/images/services/recycling/sales-and-dispatch.jpg",
       },
       {
         title: "Safety and Compliance",
         description:
           "Workers are equipped with **gloves, masks, aprons,** and trained in machine safety. Fire extinguishers and first-aid kits are always accessible.",
         imagePosition: "left",
+        image: "/images/services/recycling/safety-and-compliance.jpg",
       },
       {
         title: "Quality Checks",
         description:
           "PET bales are inspected to ensure:",
         imagePosition: "right",
+        image: "/images/services/recycling/quality-checks.jpg",
         bulletPoints: [
           "**<5% contamination**",
           "**Uniform weight & size**",
@@ -496,29 +523,35 @@ export const services: Service[] = [
     fullDescription:
       "Combining traditional soil farming wisdom with modern agricultural science, we help farmers optimize their soil-based cultivation.",
     tagline: "Grow Naturally in Controlled Environments",
+    heroImage: "/images/services/soil-farming/hero.jpg",
+    contactImage: "/images/services/contact.jpg",
     sections: [
       {
         title: "Soil Farming, Redefined",
         description:
           "At Kamala Farms, we understand that not every crop or farmer's vision fits within hydroponics — and that's where **Soil Farming inside Polyhouses** comes in.\n\nBy combining the **natural strength of soil cultivation** with the **controlled environment of a polyhouse,** we help farmers grow high-quality produce with reduced risks and enhanced efficiency.",
         imagePosition: "left",
+        image: "/images/services/soil-farming/soil-farming-redefined.jpg",
       },
       {
         title: "Why Soil Farming Inside Polyhouses?",
         description:
           "Traditional farming is often affected by unpredictable weather, pests, and water stress. A polyhouse solves these challenges by creating a **climate-controlled shield** that protects your crops year-round.\n\nThis approach lets farmers cultivate a wide range of crops — from vegetables and flowers to fruiting plants — while still using organic soil practices.",
         imagePosition: "right",
+        image: "/images/services/soil-farming/why-soil-farming.jpg",
       },
       {
         title: "Our Process",
         description:
           "We begin with soil testing and preparation, ensuring the right nutrient balance for your chosen crops. Then we set up a **customized irrigation and fertigation system** designed to optimize water and nutrient use.\n\nOur experts guide you through best practices in crop rotation, soil health management, and organic pest control, ensuring long-term productivity and sustainability.",
         imagePosition: "left",
+        image: "/images/services/soil-farming/our-process.jpg",
       },
       {
         title: "Benefits of Soil Farming in Polyhouses",
         description: "",
         imagePosition: "left",
+        image: "/images/services/soil-farming/benefits.jpg",
         bulletPoints: [
           "Extended growing seasons and consistent yields",
           "Better temperature and humidity control",
@@ -532,6 +565,7 @@ export const services: Service[] = [
         description:
           "This model is ideal for:",
         imagePosition: "right",
+        image: "/images/services/soil-farming/who-can-benefit.jpg",
         bulletPoints: [
           "Farmers transitioning from open-field to protected cultivation",
           "Organic growers seeking year-round production",
