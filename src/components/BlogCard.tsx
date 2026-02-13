@@ -6,6 +6,11 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
+  const href = post.externalUrl || `/blog/${post.slug}`;
+  const linkProps = post.externalUrl
+    ? { target: "_blank" as const, rel: "noopener noreferrer" }
+    : {};
+
   return (
     <article className="blog-card group">
       <div className="blog-card__image">
@@ -19,9 +24,10 @@ export default function BlogCard({ post }: BlogCardProps) {
         />
         <div className="blog-card__overlay" />
         <Link
-          href={`/blog/${post.slug}`}
+          href={href}
           className="absolute inset-0 z-10"
           aria-hidden="true"
+          {...linkProps}
         />
       </div>
       <div className="blog-card__content">
@@ -30,7 +36,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           <span className="blog-card__date">{post.date}</span>
         </div>
         <h4 className="blog-card__title">
-          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+          <Link href={href} {...linkProps}>{post.title}</Link>
         </h4>
       </div>
     </article>

@@ -5,6 +5,7 @@ export interface BlogPostData {
   date: string;
   category: string;
   coverImage: string;
+  externalUrl?: string;
 }
 
 export const blogPosts: BlogPostData[] = [
@@ -191,6 +192,8 @@ export const blogPosts: BlogPostData[] = [
     category: "KamalaFarms",
     coverImage:
       "https://kamalafarms.com/wp-content/uploads/2020/05/blog-02-890x664.jpeg",
+    externalUrl:
+      "https://gubbagroup.com/hydroponic-fodder-cultivation-a-sustainable-alternative-to-conventional-farming/",
   },
   {
     id: 20,
@@ -200,24 +203,8 @@ export const blogPosts: BlogPostData[] = [
     category: "KamalaFarms",
     coverImage:
       "https://kamalafarms.com/wp-content/uploads/2025/09/irrigation-01-890x664.jpg",
-  },
-  {
-    id: 21,
-    slug: "food-and-your-mood-mental-health",
-    title: "Food & Your Mood: How Food Effects Mental Health",
-    date: "September 24, 2025",
-    category: "KamalaFarms",
-    coverImage:
-      "https://kamalafarms.com/wp-content/uploads/2025/09/Enhancing-Crop-Quality-and-quantity-Progressive-Hydroponic-Agriculture-Workshop-in-Hyderabad.jpg",
-  },
-  {
-    id: 22,
-    slug: "top-5-ways-grow-vertical-gardens",
-    title: "Top 5 Ways to Grow Vertical Gardens in Small Spaces",
-    date: "September 24, 2025",
-    category: "KamalaFarms",
-    coverImage:
-      "https://kamalafarms.com/wp-content/uploads/2025/09/contract-farming.jpg",
+    externalUrl:
+      "https://gubbagroup.com/the-hydroponic-future-of-curcuma-longa-cultivation/",
   },
 ];
 
