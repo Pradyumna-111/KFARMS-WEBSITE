@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SectionWrapper, Heading, Button } from "@/components/ui";
-import { services } from "@/content/services";
+import { services, type ServiceSection } from "@/content/services";
 import { ServiceContactForm } from "@/components/ServiceContactForm";
 import { PolyhouseCarousel } from "@/components/PolyhouseCarousel";
 import {
@@ -41,6 +41,119 @@ function parseMarkdown(text: string) {
   });
 }
 
+function renderSectionTextContent(section: ServiceSection) {
+  return (
+    <div className="flex flex-col justify-start">
+      <h3 className="font-heading text-3xl md:text-4xl uppercase text-dark mb-6">
+        {section.title}
+      </h3>
+      {section.description && (
+        <div className="text-gray-600 leading-relaxed space-y-4 whitespace-pre-line">
+          {section.description.split('\n').map((paragraph, pIndex) => (
+            <p key={pIndex}>{parseMarkdown(paragraph)}</p>
+          ))}
+        </div>
+      )}
+
+      {/* Bullet Points */}
+      {section.bulletPoints && section.bulletPoints.length > 0 && (
+        <ul className={`mt-6 space-y-3 ${section.roundBullets || section.numberedPoints ? "list-none" : ""}`}>
+          {section.bulletPoints.map((point, pIndex) => (
+            <li key={pIndex} className="flex items-start gap-3">
+              {section.numberedPoints ? (
+                <span className="text-gray-600 flex-shrink-0 mt-0.5">{pIndex + 1}.</span>
+              ) : section.roundBullets ? (
+                <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
+              ) : (
+                <svg className="w-5 h-5 text-primary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              )}
+              <span className="text-gray-600 leading-relaxed">{parseMarkdown(point)}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Bullet Items with sub-points */}
+      {section.bulletItems && section.bulletItems.length > 0 && (
+        <ul className="mt-6 space-y-3 list-none">
+          {section.bulletItems.map((item, bIndex) => (
+            <li key={bIndex}>
+              <div className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
+                <span className="text-gray-600 leading-relaxed">{parseMarkdown(item.text)}</span>
+              </div>
+              {item.subPoints && item.subPoints.length > 0 && (
+                <ul className="mt-2 ml-6 space-y-2 list-none">
+                  {item.subPoints.map((sub, sIndex) => (
+                    <li key={sIndex} className="flex items-start gap-3">
+                      <span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-2" />
+                      <span className="text-gray-600 leading-relaxed">{parseMarkdown(sub)}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Footer Note */}
+      {section.footerNote && (
+        <div className="mt-6 text-gray-600 leading-relaxed space-y-2">
+          {section.footerNote.split('\n').map((line, lIndex) => (
+            <p key={lIndex}>{parseMarkdown(line)}</p>
+          ))}
+        </div>
+      )}
+
+      {/* Crop Table */}
+      {section.showCropTable && section.cropCategories && (
+        <div className="mt-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {section.cropCategories.map((category, idx) => (
+              <div key={idx} className="flex flex-col">
+                <div className="font-heading font-bold text-dark text-lg uppercase tracking-wide mb-4 pb-2 border-b-2 border-primary">
+                  {category.name}
+                </div>
+                <div className="space-y-2">
+                  {category.crops.map((crop, cropIdx) => (
+                    <div key={cropIdx} className={`py-2 px-3 text-sm text-gray-600 ${cropIdx % 2 === 1 ? "bg-gray-50" : ""}`}>
+                      {crop}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          {section.cropFooterText && (
+            <p className="mt-8 text-gray-600 text-base">{section.cropFooterText}</p>
+          )}
+        </div>
+      )}
+
+      {/* Button */}
+      {section.buttonText && section.buttonLink && (
+        <div className="mt-8">
+          <a
+            href={section.buttonLink}
+            className="relative inline-flex bg-primary hover:bg-primary/90 text-white font-heading text-lg uppercase tracking-wide py-4 px-12 transition-all duration-300 overflow-hidden group items-center gap-3"
+          >
+            <span className="relative z-10 flex items-center gap-3">
+              <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+              </svg>
+              <span>{section.buttonText}</span>
+            </span>
+            <span className="absolute inset-0 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
 }
@@ -65,6 +178,22 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
   if (!service) {
     notFound();
+  }
+
+  // Preprocess sections for compact layout (pair non-fullWidth sections side by side)
+  const sectionGroups: ServiceSection[][] = [];
+  if (service.compactSections && service.sections) {
+    let buffer: ServiceSection[] = [];
+    service.sections.forEach((section) => {
+      if (section.fullWidth) {
+        if (buffer.length > 0) { sectionGroups.push([...buffer]); buffer = []; }
+        sectionGroups.push([section]);
+      } else {
+        buffer.push(section);
+        if (buffer.length === 2) { sectionGroups.push([...buffer]); buffer = []; }
+      }
+    });
+    if (buffer.length > 0) sectionGroups.push([...buffer]);
   }
 
   return (
@@ -105,6 +234,27 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
       {/* SERVICE SECTIONS */}
       {service.sections && service.sections.length > 0 && (
+        service.compactSections ? (
+          <>
+            {sectionGroups.map((group, gIndex) => (
+              <SectionWrapper key={gIndex} background={gIndex % 2 === 0 ? "white" : "light"}>
+                {group.length === 1 && group[0].fullWidth ? (
+                  <div className="w-full">
+                    {renderSectionTextContent(group[0])}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    {group.map((section, sIndex) => (
+                      <div key={sIndex}>
+                        {renderSectionTextContent(section)}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </SectionWrapper>
+            ))}
+          </>
+        ) : (
         <>
           {service.sections.map((section, index) => (
             <SectionWrapper key={index} background={index % 2 === 0 ? "white" : "light"}>
@@ -431,6 +581,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </SectionWrapper>
           ))}
         </>
+        )
       )}
 
       {/* WHY IT MATTERS SECTION */}

@@ -144,16 +144,6 @@ export const blogPosts: BlogPostData[] = [
       "https://kamalafarms.com/wp-content/uploads/2025/09/Enhancing-Crop-Quality-and-quantity-Progressive-Hydroponic-Agriculture-Workshop-in-Hyderabad.jpg",
   },
   {
-    id: 15,
-    slug: "hydroponic-farming-training-hyderabad",
-    title:
-      "Growing Your Future: Exploring Hydroponic Farming Training Programs in Hyderabad",
-    date: "September 24, 2025",
-    category: "KamalaFarms",
-    coverImage:
-      "https://kamalafarms.com/wp-content/uploads/2020/05/blog-03-890x664.jpg",
-  },
-  {
     id: 16,
     slug: "hydroponics-training-home-gardeners",
     title:
@@ -172,16 +162,6 @@ export const blogPosts: BlogPostData[] = [
     category: "KamalaFarms",
     coverImage:
       "https://kamalafarms.com/wp-content/uploads/2025/09/benefits-starting-polyhouse.jpg",
-  },
-  {
-    id: 18,
-    slug: "traditional-to-modern-precision-hydroponics",
-    title:
-      "From Traditional to Modern Technology, Kamala Farms the Rise of Precision Hydroponics",
-    date: "September 24, 2025",
-    category: "KamalaFarms",
-    coverImage:
-      "https://kamalafarms.com/wp-content/uploads/2025/09/hydroponics-investments-in-hyderabad.jpg",
   },
   {
     id: 19,

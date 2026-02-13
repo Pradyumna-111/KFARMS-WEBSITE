@@ -68,6 +68,7 @@ export interface Service {
   heroButtonText?: string;
   heroButtonLink?: string;
   heroOverlay?: boolean;
+  compactSections?: boolean;
 }
 
 export const services: Service[] = [
@@ -280,7 +281,7 @@ export const services: Service[] = [
       },
     ],
     contactQuote:
-      "Knowledge is power. Let's build the expertise for your farm's success.",
+      "Seats are limited. Join our weekend hydroponics training and take your first step toward the future of farming.",
   },
   {
     slug: "contract-farming",
@@ -346,6 +347,8 @@ export const services: Service[] = [
     tagline: "From Bare Land to Thriving Polyhouse Farms",
     heroImage: "/images/hero/subsidy-hero.jpg",
     heroOverlay: false,
+    compactSections: true,
+    contactImage: "/images/services/contact.jpg",
     sections: [
       {
         title: "Subsidy",
@@ -383,6 +386,7 @@ export const services: Service[] = [
         title: "Suitable Crops for Hydroponics",
         description:
           "Hydroponic systems are ideal for fast-growing, high-demand crops:",
+        fullWidth: true,
         imagePosition: "left",
         showCropTable: true,
         cropCategories: [

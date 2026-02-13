@@ -224,32 +224,32 @@ const END_TO_END_SERVICES = [
 const CLIENT_STORIES = [
   {
     title: "Vikram's High-Tech Hydroponic Farm Setup",
-    image: "/images/portfolio/vikram-farm.jpg",
+    image: "https://kamalafarms.com/wp-content/uploads/2025/09/irrigation-01-890x664.jpg",
   },
   {
     title: "Arun & Meera's Hydroponic Cucumber Venture",
-    image: "/images/portfolio/arun-meera-farm.jpg",
+    image: "https://kamalafarms.com/wp-content/uploads/2025/09/contract-farming.jpg",
   },
   {
     title: "Karthik & Krishna's Hydroponic Turmeric Success",
-    image: "/images/portfolio/karthik-krishna-farm.jpg",
+    image: "https://kamalafarms.com/wp-content/uploads/2025/09/Enhancing-Crop-Quality-and-quantity-Progressive-Hydroponic-Agriculture-Workshop-in-Hyderabad.jpg",
   },
 ];
 
 const BLOG_POSTS = [
   {
-    title: "The Benefits of Starting a Hydroponics Farm in Hyderabad",
-    image: "/images/blog/hydroponics-hyderabad.jpg",
+    title: "The Benefits of Starting Hydroponic Farming",
+    image: "https://kamalafarms.com/wp-content/uploads/2025/09/benefits-starting-polyhouse.jpg",
     href: "/blog",
   },
   {
     title: "Hydroponics Investment in Hyderabad: A Beginner's Guide",
-    image: "/images/blog/hydroponics-investment.jpg",
+    image: "https://kamalafarms.com/wp-content/uploads/2025/09/healthy-poyhouse.jpg",
     href: "/blog",
   },
   {
     title: "What is Automated Hydroponic Farming System and How it Works?",
-    image: "/images/blog/automated-hydroponics.jpg",
+    image: "https://kamalafarms.com/wp-content/uploads/2025/09/hydroponics-investments-in-hyderabad.jpg",
     href: "/blog",
   },
 ];
@@ -405,13 +405,15 @@ export default function HomePage() {
               className="group overflow-hidden bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
             >
               <div className="relative h-56 bg-gray-200 overflow-hidden">
-                {/* TODO: Add project images */}
-                <div className="h-full w-full flex items-center justify-center text-gray-brand text-sm">
-                  [Add image]
-                </div>
+                <img
+                  src={story.image}
+                  alt={story.title}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
               <div className="p-6">
-                <h3 className="font-semibold text-dark text-lg leading-snug">
+                <h3 className="font-heading text-lg uppercase leading-snug text-dark">
                   {story.title}
                 </h3>
               </div>
@@ -433,10 +435,12 @@ export default function HomePage() {
               className="group overflow-hidden bg-white shadow-sm border border-gray-100 transition-shadow duration-300 hover:shadow-lg"
             >
               <div className="relative h-48 bg-gray-200 overflow-hidden">
-                {/* TODO: Add blog images */}
-                <div className="h-full w-full flex items-center justify-center text-gray-brand text-sm">
-                  [Add image]
-                </div>
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
               <div className="p-6">
                 <p className="text-xs uppercase tracking-widest text-gray-brand mb-2">
