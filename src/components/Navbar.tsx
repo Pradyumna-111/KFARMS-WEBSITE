@@ -71,7 +71,12 @@ export default function Navbar() {
                     <li key={child.href}>
                       <Link
                         href={child.href}
-                        className="relative block px-8 py-3 text-base text-white/80 transition-colors hover:text-white after:absolute after:bottom-2 after:left-8 after:h-[1px] after:w-0 after:bg-white/60 after:transition-all after:duration-300 hover:after:w-[calc(100%-4rem)]"
+                        className={cn(
+                          "relative block px-8 py-3 text-base transition-colors after:absolute after:bottom-2 after:left-8 after:h-[1px] after:bg-white/60 after:transition-all after:duration-300",
+                          pathname === child.href
+                            ? "text-white font-semibold after:w-[calc(100%-4rem)]"
+                            : "text-white/80 hover:text-white after:w-0 hover:after:w-[calc(100%-4rem)]"
+                        )}
                       >
                         {child.label}
                       </Link>

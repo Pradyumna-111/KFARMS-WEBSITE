@@ -204,7 +204,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <img
             src={service.heroImage}
             alt={service.title}
-            className="absolute inset-0 h-full w-full object-cover"
+            className={`absolute inset-0 h-full w-full object-cover ${service.slug === "subsidy-support" ? "object-top" : ""}`}
           />
         )}
         {service.heroOverlay !== false && (
@@ -287,21 +287,27 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   {section.showProcessGallery && (
                     <div className="mt-12 grid grid-cols-2 md:grid-cols-5 gap-0 w-full">
                       {[
-                        { number: "01", label: "Planning & Design" },
-                        { number: "02", label: "Construction" },
-                        { number: "03", label: "Hydroponics Installation" },
-                        { number: "04", label: "Systems Integration" },
-                        { number: "05", label: "Training & Handover" },
+                        { number: "01", label: "Blueprint/Designs", image: "/images/services/turnkey-setup/blueprint.jpg" },
+                        { number: "02", label: "Construction Phase", image: "/images/services/turnkey-setup/construction-phase.jpg" },
+                        { number: "03", label: "Hydroponic System Setup", image: "/images/services/turnkey-setup/hydroponic-system-setup.jpg" },
+                        { number: "04", label: "Training Session", image: "/images/services/turnkey-setup/training-session.jpg" },
+                        { number: "05", label: "Final Look", image: "/images/services/turnkey-setup/final-look.jpg" },
                       ].map((step, idx) => (
                         <div
                           key={idx}
-                          className="relative bg-light-gray flex flex-col items-center justify-center"
-                          style={{ aspectRatio: "1/1" }}
+                          className="relative overflow-hidden flex flex-col items-center justify-center"
+                          style={{ aspectRatio: "208/249" }}
                         >
-                          <span className="text-6xl font-heading text-white mb-4">
+                          <img
+                            src={step.image}
+                            alt={step.label}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-black/40" />
+                          <span className="relative text-7xl font-heading text-white mb-4">
                             {step.number}
                           </span>
-                          <span className="absolute bottom-4 text-xs uppercase text-gray-600 text-center px-2">
+                          <span className="relative absolute bottom-4 text-sm uppercase text-white font-heading tracking-wider text-center px-2">
                             {step.label}
                           </span>
                         </div>

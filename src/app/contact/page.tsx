@@ -18,13 +18,7 @@ export default function ContactPage() {
           alt="Contact Us"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 text-center text-white px-4">
-          <h1 className="font-heading text-5xl md:text-7xl uppercase mb-4">Contact Us</h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto text-gray-200">
-            Reach out to us for farm consultations, quotes, and inquiries
-          </p>
-        </div>
+        <div className="absolute inset-0 bg-black/5" />
       </section>
 
       {/* CONTACT SECTION */}

@@ -6,7 +6,7 @@ const TESTIMONIALS = [
   {
     quote:
       "Kamala Farms helped us set up our hydroponic farm from scratch. Their expertise and support throughout the process was incredible. We're now producing fresh vegetables year-round.",
-    name: "George Gordon",
+    name: "Vikram",
     role: "Business Owner",
     avatar: "/images/testimonials/george-gordon.jpg",
   },

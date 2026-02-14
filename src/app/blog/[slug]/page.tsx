@@ -48,10 +48,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
             <h1 className="blog-header__title">{post.title}</h1>
             <div className="blog-header__meta">
-              <span className="blog-header__author">
-                <span className="blog-header__author-by">By</span>
-                <span className="blog-header__author-name">kamalafarms</span>
-              </span>
               <span className="blog-header__date">{post.date}</span>
             </div>
           </div>
