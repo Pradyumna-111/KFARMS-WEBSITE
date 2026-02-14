@@ -204,7 +204,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <img
             src={service.heroImage}
             alt={service.title}
-            className={`absolute inset-0 h-full w-full object-cover ${service.slug === "subsidy-support" ? "object-top" : ""}`}
+            className={`absolute inset-0 h-full w-full object-cover ${(service.slug === "subsidy-support" || service.slug === "training") ? "object-top" : ""}`}
           />
         )}
         {service.heroOverlay !== false && (

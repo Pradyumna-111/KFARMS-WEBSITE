@@ -491,6 +491,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ===== WE FOCUSED AREAS ===== */}
+      <section className="bg-[#FFF8F0] py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-heading text-3xl md:text-5xl uppercase text-primary mb-8">
+            We Focused Areas
+          </h2>
+          <p className="font-heading text-sm md:text-base uppercase tracking-wide text-dark leading-relaxed">
+            Hydroponics Farming in Telangana, Hydroponics Farming in Andhra Pradesh, Hydroponics Farming in Karnataka, Hydroponics Farming in Gujarat, Hydroponics Farming in Madhya Pradesh, Hydroponics Farming in Dubai &amp; Abu Dhabi
+          </p>
+        </div>
+      </section>
+
       {/* ===== GET STARTED CTA ===== */}
       <SectionWrapper background="primary">
         <div className="text-center">
