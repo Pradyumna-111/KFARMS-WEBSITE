@@ -1,37 +1,58 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SectionWrapper, Heading } from "@/components/ui";
+import { SectionWrapper } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Our Products",
   description:
-    "Explore Kamala Farms products: premium coco peat, hydroponic nutrients, and grow bags for sustainable farming.",
+    "Explore Kamala Farms products: aerotowers, cocopeat, net pots, clay balls, seeds, nutrients mix, microgreens grow trays, dutch buckets, and NFT systems for hydroponics.",
 };
 
 const PRODUCTS = [
   {
-    title: "Coco Peat",
-    description:
-      "Premium-grade coco peat made from 100% natural coconut husk fibre. Ideal as a growing medium for hydroponics, nurseries, and home gardens. Excellent water retention, aeration, and pH-neutral properties ensure healthy root development.",
-    image:
-      "https://kamalafarms.com/wp-content/uploads/2025/09/benefits-starting-polyhouse.jpg",
-    features: ["100% Natural", "High Water Retention", "pH Neutral"],
+    title: "Aerotowers",
+    description: "Vertical aeroponic growing systems for space-efficient farming",
+    image: "/images/product/aerotowers.jpg",
   },
   {
-    title: "Hydroponic Nutrients",
-    description:
-      "Scientifically formulated nutrient solutions designed for all stages of plant growth. Our balanced macro and micronutrient blends ensure optimal yields in NFT, DWC, and drip hydroponic systems.",
-    image:
-      "https://kamalafarms.com/wp-content/uploads/2025/09/hydroponics-investments-in-hyderabad.jpg",
-    features: ["Balanced Formula", "All Growth Stages", "High Yield"],
+    title: "Cocopeat",
+    description: "Premium coco peat growing medium from natural coconut husk",
+    image: "/images/product/cocopeat.jpg",
   },
   {
-    title: "Grow Bags",
-    description:
-      "Durable, UV-stabilised grow bags available in multiple sizes for hydroponic and soil-based cultivation. Designed for excellent drainage and root aeration, perfect for terrace gardens, polyhouses, and commercial farms.",
-    image:
-      "https://kamalafarms.com/wp-content/uploads/2025/09/irrigation-01-890x664.jpg",
-    features: ["UV Stabilised", "Multiple Sizes", "Great Drainage"],
+    title: "Net Pots",
+    description: "Slotted mesh pots for optimal root aeration in hydroponics",
+    image: "/images/product/net-pots.jpg",
+  },
+  {
+    title: "Clay Balls",
+    description: "Lightweight expanded clay aggregate for hydroponic systems",
+    image: "/images/product/clay-balls.jpg",
+  },
+  {
+    title: "Seeds",
+    description: "High-quality seeds curated for hydroponic and soil cultivation",
+    image: "/images/product/seeds.jpg",
+  },
+  {
+    title: "Nutrients Mix",
+    description: "Balanced macro and micronutrient blends for every growth stage",
+    image: "/images/product/nutrients-mix.jpg",
+  },
+  {
+    title: "Microgreens Grow Trays",
+    description: "Purpose-built trays for growing nutrient-dense microgreens",
+    image: "/images/product/microgreens-grow-trays.jpg",
+  },
+  {
+    title: "Dutch Bucket",
+    description: "Bato bucket systems ideal for vine crops and large plants",
+    image: "/images/product/dutch-bucket.jpg",
+  },
+  {
+    title: "NFT Systems",
+    description: "Nutrient Film Technique channels for leafy green production",
+    image: "/images/product/nft.jpg",
   },
 ];
 
@@ -41,7 +62,7 @@ export default function ProductPage() {
       {/* HERO BANNER */}
       <section className="relative flex h-[calc(90vh-88px)] min-h-[512px] mt-[88px] items-center justify-center bg-dark">
         <img
-          src="/images/hero/our-services-hero.jpg"
+          src="/images/hero/product-hero.jpg"
           alt="Our Products"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -56,48 +77,51 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* PRODUCTS GRID */}
+      {/* PRODUCT CATALOG */}
       <SectionWrapper>
-        <Heading
-          as="h2"
-          subtitle="Everything you need to grow smarter and more sustainably"
-        >
-          Featured Products
-        </Heading>
+        <div className="text-center mb-12">
+          <h2 className="font-heading text-3xl md:text-5xl uppercase text-dark mb-4">
+            Our Product Range
+          </h2>
+          <p className="text-gray-brand max-w-2xl mx-auto">
+            Everything you need to set up and run a successful hydroponic farm
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((product) => (
-            <div
+            <Link
               key={product.title}
-              className="group rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:border-primary overflow-hidden"
+              href="/contact"
+              className="group block"
             >
-              <div className="overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-heading text-xl uppercase tracking-wide text-dark mb-3">
-                  {product.title}
-                </h3>
-                <p className="text-gray-brand text-sm leading-relaxed mb-4">
-                  {product.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {product.features.map((feature) => (
-                    <span
-                      key={feature}
-                      className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
-                    >
-                      {feature}
-                    </span>
-                  ))}
+              <div className="border-t-4 border-transparent transition-all duration-300 group-hover:border-primary group-hover:-translate-y-2 group-hover:shadow-xl bg-white shadow-sm">
+                {/* Square image */}
+                <div className="relative overflow-hidden bg-light-gray" style={{ aspectRatio: "1/1" }}>
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="p-6 text-center">
+                  <h3 className="font-heading text-xl md:text-2xl uppercase tracking-wide text-dark mb-2">
+                    {product.title}
+                  </h3>
+                  <p className="text-gray-brand text-sm leading-relaxed mb-4">
+                    {product.description}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-primary font-medium text-sm uppercase tracking-wider transition-colors group-hover:text-primary-dark">
+                    Enquire Now
+                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </SectionWrapper>
