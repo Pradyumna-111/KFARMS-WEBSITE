@@ -158,6 +158,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionWrapper } from "@/components/ui";
 import TestimonialSlider from "./testimonial-slider";
+import VideoPopup from "@/components/VideoPopup";
 import {
   IconSiteDesign,
   IconTurnkeySetup,
@@ -472,22 +473,8 @@ export default function HomePage() {
         </div>
 
         {/* Right — Video */}
-        <div className="relative bg-gray-200 min-h-[400px] lg:min-h-0">
-          {/* TODO: Replace with actual video embed or thumbnail */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-full w-full flex items-center justify-center text-gray-brand text-sm">
-              [Add video thumbnail: /images/video-thumbnail.jpg]
-            </div>
-          </div>
-          {/* Play button overlay */}
-          <button
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-16 w-16 items-center justify-center bg-white rounded-full shadow-lg hover:scale-110 transition-transform"
-            aria-label="Play video"
-          >
-            <svg className="h-6 w-6 text-dark ml-1" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </button>
+        <div className="relative bg-black min-h-[400px] lg:min-h-0">
+          <VideoPopup youtubeId="xA_utZ7NxS4" />
         </div>
       </section>
 

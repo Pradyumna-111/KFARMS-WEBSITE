@@ -29,7 +29,7 @@ const TEAM_MEMBERS = [
   {
     name: "Alugadda Srinivasa Rao",
     role: "Mentor & Advisory",
-    image: "/images/team/srinivasa-rao.jpg",
+    image: null,
   },
   {
     name: "Chiranjeevi Rayapudi",
@@ -40,9 +40,14 @@ const TEAM_MEMBERS = [
   {
     name: "Kandi Ashok",
     role: "Expert Advisory",
-    image: "/images/team/kandi-ashok.jpg",
+    image: null,
   },
 ];
+
+function getInitials(name: string) {
+  const parts = name.trim().split(" ");
+  return (parts[0][0] + (parts[1]?.[0] ?? "")).toUpperCase();
+}
 
 export default function AboutPage() {
   return (
@@ -211,12 +216,20 @@ export default function AboutPage() {
           {TEAM_MEMBERS.map((member) => (
             <div key={member.name} className="text-center group">
               <div className="mx-auto mb-5 h-48 w-48 overflow-hidden rounded-full bg-light-gray">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="h-full w-full object-cover"
-                  style={{ objectPosition: member.objectPosition || "center" }}
-                />
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="h-full w-full object-cover"
+                    style={{ objectPosition: member.objectPosition || "center" }}
+                  />
+                ) : (
+                  <div className="h-full w-full flex items-center justify-center bg-primary rounded-full">
+                    <span className="text-white text-4xl font-bold tracking-wide">
+                      {getInitials(member.name)}
+                    </span>
+                  </div>
+                )}
               </div>
               <h3 className="text-lg font-semibold text-dark">{member.name}</h3>
               <p className="text-sm text-primary font-medium">{member.role}</p>

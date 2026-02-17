@@ -388,10 +388,35 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     </div>
                   )}
 
-                  {/* Partner Logos placeholder if enabled */}
+                  {/* Partner Logos if enabled */}
                   {section.showPartnerLogos && (
-                    <div className="mt-12 min-h-[200px] bg-light-gray rounded-lg flex items-center justify-center">
-                      <span className="text-gray-500">[Partner Logos]</span>
+                    <div className="mt-10 flex flex-wrap items-stretch justify-center gap-8">
+                      {[
+                        { src: "/images/partners/niphm.jpg", name: "NIPHM", full: "National Institute of Plant Health Management" },
+                        { src: "/images/partners/agbiotech.jpg", name: "AgBiotech", full: "AgBiotech India" },
+                      ].map((partner) => (
+                        <div key={partner.name} className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-xl px-8 py-6 shadow-sm w-[200px]">
+                          <img
+                            src={partner.src}
+                            alt={partner.name}
+                            className="h-[100px] w-[100px] object-contain"
+                          />
+                          <p className="text-sm font-semibold text-dark text-center leading-snug">{partner.full}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Coming Soon if enabled */}
+                  {section.showComingSoon && (
+                    <div className="mt-10 flex flex-col items-center justify-center py-12 px-8 bg-white border border-dashed border-primary/40 rounded-xl text-center">
+                      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                        <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+                        </svg>
+                      </div>
+                      <h4 className="font-heading text-xl uppercase tracking-wide text-dark font-bold mb-2">Coming Soon</h4>
+                      <p className="text-gray-500 text-sm max-w-sm">We&apos;re planning exciting programs. Check back soon or contact us to be notified.</p>
                     </div>
                   )}
 

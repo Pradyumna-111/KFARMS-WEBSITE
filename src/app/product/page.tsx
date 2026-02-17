@@ -88,7 +88,7 @@ export default function ProductPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
           {PRODUCTS.map((product) => (
             <Link
               key={product.title}
@@ -106,16 +106,16 @@ export default function ProductPage() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 text-center">
-                  <h3 className="font-heading text-xl md:text-2xl uppercase tracking-wide text-dark mb-2">
+                <div className="p-4 text-center">
+                  <h3 className="font-heading text-base md:text-lg uppercase tracking-wide text-dark mb-1">
                     {product.title}
                   </h3>
-                  <p className="text-gray-brand text-sm leading-relaxed mb-4">
+                  <p className="text-gray-brand text-xs leading-relaxed mb-3">
                     {product.description}
                   </p>
-                  <span className="inline-flex items-center gap-1 text-primary font-medium text-sm uppercase tracking-wider transition-colors group-hover:text-primary-dark">
+                  <span className="inline-flex items-center gap-1 text-primary font-medium text-xs uppercase tracking-wider transition-colors group-hover:text-primary-dark">
                     Enquire Now
-                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </span>

@@ -52,6 +52,7 @@ export interface ServiceSection {
   numberedPoints?: boolean;
   bulletItems?: BulletItem[];
   showPartnerLogos?: boolean;
+  showComingSoon?: boolean;
 }
 
 export interface Service {
@@ -277,7 +278,7 @@ export const services: Service[] = [
           "Stay tuned for our **latest workshops, webinars, and farm visits.** This section is continuously updated so you can register for upcoming events and never miss a chance to learn.",
         imagePosition: "left",
         fullWidth: true,
-        showPartnerLogos: true,
+        showComingSoon: true,
       },
     ],
     contactQuote:
