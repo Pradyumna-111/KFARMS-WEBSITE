@@ -38,14 +38,13 @@ export const NAV_LINKS = [
     label: "Our Services",
     href: "/services",
     children: [
-      { label: "Site Design & Planning", href: "/services/site-design-planning" },
+      { label: "Site Audit, DPR & Subsidy", href: "/services/site-audit-dpr-subsidy" },
       { label: "Turnkey Setup", href: "/services/turnkey-setup" },
-      { label: "Farm Management", href: "/services/farm-management" },
       { label: "Training & Capacity Building", href: "/services/training" },
-      { label: "Contract Farming & Buyback", href: "/services/contract-farming" },
-      { label: "Subsidy Support", href: "/services/subsidy-support" },
-      { label: "Recycling", href: "/services/recycling" },
-      { label: "Soil Farming", href: "/services/soil-farming" },
+      // { label: "Farm Management", href: "/services/farm-management" },  // merged into turnkey-setup
+      // { label: "Contract Farming & Buyback", href: "/services/contract-farming" },  // merged into turnkey-setup
+      // { label: "Recycling", href: "/services/recycling" },
+      // { label: "Soil Farming", href: "/services/soil-farming" },
     ],
   },
   { label: "Product", href: "/product" },

@@ -35,7 +35,7 @@ export default function Heading({
         {children}
       </Tag>
       {subtitle && (
-        <p className="mt-3 max-w-2xl text-lg text-gray-brand">{subtitle}</p>
+        <p className="mt-3 max-w-2xl text-lg text-gray-900">{subtitle}</p>
       )}
     </div>
   );

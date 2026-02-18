@@ -15,6 +15,7 @@ export function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,23 +25,31 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMsg("");
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          // Honeypot — read from the hidden input; bots fill it, real users don't
+          _gotcha: (e.currentTarget.elements.namedItem("_gotcha") as HTMLInputElement)?.value ?? "",
+        }),
       });
 
-      if (response.ok) {
+      const json = await response.json();
+
+      if (json.success) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-        setTimeout(() => setSubmitStatus("idle"), 3000);
       } else {
         setSubmitStatus("error");
+        setErrorMsg(json.error ?? "Something went wrong. Please try again.");
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
+      setErrorMsg("Network error. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -60,11 +69,20 @@ export function ContactForm() {
 
         {submitStatus === "error" && (
           <div className="mb-6 rounded-lg bg-red-100 p-4 text-red-800">
-            ✗ Something went wrong. Please try again.
+            ✗ {errorMsg || "Something went wrong. Please try again."}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Honeypot — hidden from real users, catches bots that auto-fill all fields */}
+          <input
+            type="text"
+            name="_gotcha"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="hidden"
+          />
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-dark mb-2">
               Full Name *

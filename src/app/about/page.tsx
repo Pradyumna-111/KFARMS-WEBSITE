@@ -71,7 +71,7 @@ export default function AboutPage() {
       </section>
 
       {/* COMPANY OVERVIEW */}
-      <SectionWrapper>
+      <SectionWrapper compact>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
           <div className="relative h-[400px] rounded-lg overflow-hidden bg-light-gray">
             <img
@@ -84,7 +84,7 @@ export default function AboutPage() {
             <Heading as="h2" subtitle="Founded in 2017">
               Who We Are
             </Heading>
-            <p className="text-gray-brand leading-relaxed mb-4">
+            <p className="text-gray-900 leading-relaxed mb-4">
               Kamala Farms is primarily a Hydroponics company aimed to address challenges
               like food security, food transparency and accessibility to nutritious food.
               It is a dream venture built by Meghana Rao and Sandeep Reddy in 2017 with
@@ -92,7 +92,7 @@ export default function AboutPage() {
               to consume for everyone all around India to improve quality of life. Because
               a nation that eats healthy stays healthy.
             </p>
-            <p className="text-gray-brand leading-relaxed">
+            <p className="text-gray-900 leading-relaxed">
               The company have since been crucial in changing the face of hydroponics and
               sustainable agricultural market. Successfully served more than 25+ clients
               (PAN India) in both tier 1 and tier 2 cities for their Hydroponic farm
@@ -103,9 +103,9 @@ export default function AboutPage() {
       </SectionWrapper>
 
       {/* OUR PURPOSE — VISION & MISSION */}
-      <SectionWrapper background="light">
+      <SectionWrapper background="light" compact>
         <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-widest text-gray-brand mb-4">
+          <p className="text-sm uppercase tracking-widest text-gray-900 mb-4">
             Our Purpose
           </p>
           <h2 className="font-heading text-3xl md:text-5xl uppercase text-dark">
@@ -124,7 +124,7 @@ export default function AboutPage() {
             <h3 className="font-heading text-2xl uppercase mb-4 text-dark">
               Our Vision
             </h3>
-            <p className="text-gray-brand leading-relaxed">
+            <p className="text-gray-900 leading-relaxed">
               To make sustainable agriculture simple, accessible, and rewarding for
               everyone — so that every meal in the future is rich in nutrients and free
               from harm.
@@ -155,7 +155,7 @@ export default function AboutPage() {
             <h3 className="font-heading text-2xl uppercase mb-4 text-dark">
               Our Mission
             </h3>
-            <p className="text-gray-brand leading-relaxed">
+            <p className="text-gray-900 leading-relaxed">
               To empower growers and dreamers with end-to-end hydroponic solutions, expert
               guidance, and affordable services — making climate-smart farming a reality,
               one farm at a time.
@@ -165,15 +165,15 @@ export default function AboutPage() {
       </SectionWrapper>
 
       {/* OUR STORY */}
-      <SectionWrapper>
+      <SectionWrapper compact>
         <Heading as="h2">Our Story</Heading>
-        <p className="text-gray-brand leading-relaxed text-lg mb-6">
+        <p className="text-gray-900 leading-relaxed text-lg mb-6">
           Kamala Farms was born out of a passion for farming and a vision to make
           agriculture smarter, sustainable, and future-ready. Since 2017, we&apos;ve
           been on a mission to transform Indian agriculture from climate-stressed
           practices to climate-smart solutions powered by hydroponics.
         </p>
-        <p className="text-gray-brand leading-relaxed text-lg mb-10">
+        <p className="text-gray-900 leading-relaxed text-lg mb-10">
           From training over{" "}
           <strong className="text-dark">18,000+ learners</strong> to setting up{" "}
           <strong className="text-dark">110,000+ sq. ft. of farms</strong> and
@@ -188,7 +188,7 @@ export default function AboutPage() {
         <ImpactStats />
 
         {/* CLOSING STATEMENT */}
-        <p className="text-gray-brand leading-relaxed text-lg mt-10 mb-4">
+        <p className="text-gray-900 leading-relaxed text-lg mt-10 mb-4">
           Kamala Farms has become a trusted name in hydroponics, blending innovation
           with hands-on expertise. And{" "}
           <strong className="text-dark">this is just the beginning</strong>. With
@@ -203,19 +203,19 @@ export default function AboutPage() {
       </SectionWrapper>
 
       {/* MANAGEMENT TEAM */}
-      <SectionWrapper>
+      <SectionWrapper compact>
         <div className="text-center mb-8">
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl uppercase tracking-wide text-dark">
             Management Team
           </h2>
-          <p className="mt-3 text-lg text-gray-brand font-semibold">
+          <p className="mt-3 text-lg text-gray-900 font-semibold">
             Meet The Minds Behind Kamala Farms
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-6">
           {TEAM_MEMBERS.map((member) => (
             <div key={member.name} className="text-center group">
-              <div className="mx-auto mb-5 h-48 w-48 overflow-hidden rounded-full bg-light-gray">
+              <div className="mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full bg-light-gray">
                 {member.image ? (
                   <img
                     src={member.image}
@@ -225,21 +225,21 @@ export default function AboutPage() {
                   />
                 ) : (
                   <div className="h-full w-full flex items-center justify-center bg-primary rounded-full">
-                    <span className="text-white text-4xl font-bold tracking-wide">
+                    <span className="text-white text-3xl font-bold tracking-wide">
                       {getInitials(member.name)}
                     </span>
                   </div>
                 )}
               </div>
-              <h3 className="text-lg font-semibold text-dark">{member.name}</h3>
-              <p className="text-sm text-primary font-medium">{member.role}</p>
+              <h3 className="text-sm font-semibold text-dark">{member.name}</h3>
+              <p className="text-xs text-primary font-medium">{member.role}</p>
             </div>
           ))}
         </div>
       </SectionWrapper>
 
       {/* CTA SECTION */}
-      <SectionWrapper background="primary">
+      <SectionWrapper background="primary" compact>
         <div className="text-center">
           <Heading as="h2" className="text-white">
             Ready to Start Your Farm?

@@ -63,7 +63,7 @@ export default function StatCounter({
         {count.toLocaleString()}
         {suffix}
       </div>
-      <p className="mt-2 text-sm md:text-base text-gray-brand uppercase tracking-wider">
+      <p className="mt-2 text-sm md:text-base text-gray-900 uppercase tracking-wider">
         {label}
       </p>
     </div>

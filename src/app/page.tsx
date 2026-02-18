@@ -73,7 +73,7 @@
 //       {/* ABOUT PREVIEW - TODO: Add image + company intro */}
 //       <SectionWrapper>
 //         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 items-center">
-//           <div className="h-80 rounded-lg bg-light-gray flex items-center justify-center text-gray-brand">
+//           <div className="h-80 rounded-lg bg-light-gray flex items-center justify-center text-gray-900">
 //             {/* TODO: Replace with actual image */}
 //             [Company Image Placeholder]
 //           </div>
@@ -81,7 +81,7 @@
 //             <Heading as="h2" subtitle="Who We Are">
 //               About Kamala Farms
 //             </Heading>
-//             <p className="text-gray-brand leading-relaxed mb-6">
+//             <p className="text-gray-900 leading-relaxed mb-6">
 //               Kamala Farms is a hydroponics company addressing food security, food
 //               transparency and accessibility to nutritious food. Founded in 2017, we have
 //               served 25+ clients across PAN India.
@@ -131,7 +131,7 @@
 //         <Heading as="h2" subtitle="What Our Clients Say" className="text-center">
 //           Testimonials
 //         </Heading>
-//         <p className="text-center text-gray-brand">
+//         <p className="text-center text-gray-900">
 //           [TODO: Add testimonial carousel using Swiper.js]
 //         </p>
 //       </SectionWrapper>
@@ -166,8 +166,6 @@ import {
   IconTraining,
   IconContractFarming,
   IconSubsidySupport,
-  IconRecycling,
-  IconSoilFarming,
 } from "./service-icons";
 
 const END_TO_END_SERVICES = [
@@ -175,7 +173,7 @@ const END_TO_END_SERVICES = [
     title: "Site Design & Planning",
     description: "Smart planning for land utilization, irrigation, and greenhouse/hydroponic structures to maximize efficiency.",
     icon: IconSiteDesign,
-    href: "/services/site-design-planning",
+    href: "/services/site-audit-dpr-subsidy",
   },
   {
     title: "Turnkey Setup",
@@ -187,7 +185,7 @@ const END_TO_END_SERVICES = [
     title: "Farm Management",
     description: "Professional farm operations and crop management support to ensure productivity and profitability.",
     icon: IconFarmManagement,
-    href: "/services/farm-management",
+    href: "/services/turnkey-setup",
   },
   {
     title: "Training & Capacity Building",
@@ -199,25 +197,13 @@ const END_TO_END_SERVICES = [
     title: "Contract Farming",
     description: "Secure partnerships with assured buyback models, giving farmers stability and guaranteed markets.",
     icon: IconContractFarming,
-    href: "/services/contract-farming",
+    href: "/services/turnkey-setup",
   },
   {
     title: "Smart Agri Subsidy Support",
     description: "End-to-end guidance on government schemes, subsidies, and approvals to maximize project returns.",
     icon: IconSubsidySupport,
-    href: "/services/subsidy-support",
-  },
-  {
-    title: "Recycling",
-    description: "Innovative recycling solutions to promote sustainability and reduce farm waste.",
-    icon: IconRecycling,
-    href: "/services/recycling",
-  },
-  {
-    title: "Soil Farming",
-    description: "Innovative recycling solutions to promote sustainability and reduce farm waste.",
-    icon: IconSoilFarming,
-    href: "/services/soil-farming",
+    href: "/services/site-audit-dpr-subsidy",
   },
 ];
 
@@ -226,14 +212,17 @@ const CLIENT_STORIES = [
   {
     title: "Vikram's High-Tech Hydroponic Farm Setup",
     image: "https://kamalafarms.com/wp-content/uploads/2025/09/irrigation-01-890x664.jpg",
+    href: "/portfolio/vikrams-high-tech-hydroponic-farm-setup",
   },
   {
     title: "Arun & Meera's Hydroponic Cucumber Venture",
     image: "https://kamalafarms.com/wp-content/uploads/2025/09/contract-farming.jpg",
+    href: "/portfolio/arun-meeras-hydroponic-cucumber-venture",
   },
   {
     title: "Karthik & Krishna's Hydroponic Turmeric Success",
     image: "https://kamalafarms.com/wp-content/uploads/2025/09/Enhancing-Crop-Quality-and-quantity-Progressive-Hydroponic-Agriculture-Workshop-in-Hyderabad.jpg",
+    href: "/portfolio/karthik-krishnas-hydroponic-turmeric-success",
   },
 ];
 
@@ -268,7 +257,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== ABOUT KAMALA FARMS ===== */}
-      <SectionWrapper>
+      <SectionWrapper compact>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-start">
           <div className="relative h-[400px] overflow-hidden bg-light-gray">
             <img
@@ -281,11 +270,11 @@ export default function HomePage() {
             <h2 className="font-heading text-3xl md:text-5xl uppercase text-dark mb-6">
               About Kamala Farms
             </h2>
-            <p className="text-gray-brand leading-relaxed text-lg mb-4 text-justify">
+            <p className="text-gray-900 leading-relaxed text-lg mb-4 text-justify">
               Kamala Farms is a one-stop partner providing 360&deg; support from ideation
               and setup through to harvest and market success in sustainable agriculture.
             </p>
-            <p className="text-gray-brand leading-relaxed text-lg mb-8 text-justify">
+            <p className="text-gray-900 leading-relaxed text-lg mb-8 text-justify">
               At Kamala Farms, we make farming smarter with hydroponics and sustainable
               agriculture solutions. From building commercial hydroponic farms to offering
               training and support for new growers, we&apos;re on a mission to make
@@ -303,7 +292,7 @@ export default function HomePage() {
       </SectionWrapper>
 
       {/* ===== END-TO-END SOLUTIONS ===== */}
-      <SectionWrapper background="light">
+      <SectionWrapper background="light" compact>
         <h2 className="font-heading text-2xl md:text-4xl lg:text-5xl uppercase text-dark leading-tight mb-8">
           We Provide End-to-End Farming &amp; Hydroponic Solutions Tailored to Every Grower.
         </h2>
@@ -325,7 +314,7 @@ export default function HomePage() {
               <h3 className="font-heading text-lg uppercase tracking-wide mb-3 text-dark group-hover:text-primary transition-colors">
                 {service.title}
               </h3>
-              <p className="text-gray-brand text-sm leading-relaxed">
+              <p className="text-gray-900 text-sm leading-relaxed">
                 {service.description}
               </p>
             </Link>
@@ -334,7 +323,7 @@ export default function HomePage() {
       </SectionWrapper>
 
       {/* ===== ISSUES BEFORE STARTING UP ===== */}
-      <SectionWrapper>
+      <SectionWrapper compact>
         <h2 className="font-heading text-3xl md:text-5xl uppercase text-dark text-center mb-16">
           People Face These General Issues Before Starting Up.
         </h2>
@@ -390,9 +379,9 @@ export default function HomePage() {
 
 
       {/* ===== CLIENT SUCCESS STORIES ===== */}
-      <SectionWrapper background="light">
+      <SectionWrapper background="light" compact>
         <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-widest text-gray-brand mb-4">
+          <p className="text-sm uppercase tracking-widest text-gray-900 mb-4">
             Real Results
           </p>
           <h2 className="font-heading text-3xl md:text-5xl uppercase text-dark">
@@ -401,9 +390,10 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {CLIENT_STORIES.map((story) => (
-            <div
+            <Link
               key={story.title}
-              className="group overflow-hidden bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
+              href={story.href}
+              className="group block overflow-hidden bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
             >
               <div className="relative h-56 bg-gray-200 overflow-hidden">
                 <img
@@ -418,13 +408,13 @@ export default function HomePage() {
                   {story.title}
                 </h3>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </SectionWrapper>
 
       {/* ===== BLOGS ===== */}
-      <SectionWrapper>
+      <SectionWrapper compact>
         <h2 className="font-heading text-3xl md:text-5xl uppercase text-dark text-center mb-12">
           Blogs
         </h2>
@@ -444,7 +434,7 @@ export default function HomePage() {
                 />
               </div>
               <div className="p-6">
-                <p className="text-xs uppercase tracking-widest text-gray-brand mb-2">
+                <p className="text-xs uppercase tracking-widest text-gray-900 mb-2">
                   Kamalafarms &middot;
                 </p>
                 <h3 className="font-heading text-lg uppercase leading-snug text-dark group-hover:text-primary transition-colors duration-300">
@@ -479,7 +469,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== WE FOCUSED AREAS ===== */}
-      <section className="bg-[#FFF8F0] py-16 md:py-20">
+      <section className="bg-[#FFF8F0] py-10 md:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading text-3xl md:text-5xl uppercase text-primary mb-8">
             We Focused Areas
@@ -491,7 +481,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== GET STARTED CTA ===== */}
-      <SectionWrapper background="primary">
+      <SectionWrapper background="primary" compact>
         <div className="text-center">
           <h2 className="font-heading text-3xl md:text-5xl uppercase text-white mb-8">
             Get Started

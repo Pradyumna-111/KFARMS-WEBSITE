@@ -48,7 +48,7 @@ function renderSectionTextContent(section: ServiceSection) {
         {section.title}
       </h3>
       {section.description && (
-        <div className="text-gray-600 leading-relaxed space-y-4 whitespace-pre-line">
+        <div className="text-gray-900 leading-relaxed space-y-4 whitespace-pre-line">
           {section.description.split('\n').map((paragraph, pIndex) => (
             <p key={pIndex}>{parseMarkdown(paragraph)}</p>
           ))}
@@ -61,7 +61,7 @@ function renderSectionTextContent(section: ServiceSection) {
           {section.bulletPoints.map((point, pIndex) => (
             <li key={pIndex} className="flex items-start gap-3">
               {section.numberedPoints ? (
-                <span className="text-gray-600 flex-shrink-0 mt-0.5">{pIndex + 1}.</span>
+                <span className="text-gray-900 flex-shrink-0 mt-0.5">{pIndex + 1}.</span>
               ) : section.roundBullets ? (
                 <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
               ) : (
@@ -69,7 +69,7 @@ function renderSectionTextContent(section: ServiceSection) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               )}
-              <span className="text-gray-600 leading-relaxed">{parseMarkdown(point)}</span>
+              <span className="text-gray-900 leading-relaxed">{parseMarkdown(point)}</span>
             </li>
           ))}
         </ul>
@@ -82,14 +82,14 @@ function renderSectionTextContent(section: ServiceSection) {
             <li key={bIndex}>
               <div className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
-                <span className="text-gray-600 leading-relaxed">{parseMarkdown(item.text)}</span>
+                <span className="text-gray-900 leading-relaxed">{parseMarkdown(item.text)}</span>
               </div>
               {item.subPoints && item.subPoints.length > 0 && (
                 <ul className="mt-2 ml-6 space-y-2 list-none">
                   {item.subPoints.map((sub, sIndex) => (
                     <li key={sIndex} className="flex items-start gap-3">
                       <span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-2" />
-                      <span className="text-gray-600 leading-relaxed">{parseMarkdown(sub)}</span>
+                      <span className="text-gray-900 leading-relaxed">{parseMarkdown(sub)}</span>
                     </li>
                   ))}
                 </ul>
@@ -101,7 +101,7 @@ function renderSectionTextContent(section: ServiceSection) {
 
       {/* Footer Note */}
       {section.footerNote && (
-        <div className="mt-6 text-gray-600 leading-relaxed space-y-2">
+        <div className="mt-6 text-gray-900 leading-relaxed space-y-2">
           {section.footerNote.split('\n').map((line, lIndex) => (
             <p key={lIndex}>{parseMarkdown(line)}</p>
           ))}
@@ -119,7 +119,7 @@ function renderSectionTextContent(section: ServiceSection) {
                 </div>
                 <div className="space-y-2">
                   {category.crops.map((crop, cropIdx) => (
-                    <div key={cropIdx} className={`py-2 px-3 text-sm text-gray-600 ${cropIdx % 2 === 1 ? "bg-gray-50" : ""}`}>
+                    <div key={cropIdx} className={`py-2 px-3 text-sm text-gray-900 ${cropIdx % 2 === 1 ? "bg-gray-50" : ""}`}>
                       {crop}
                     </div>
                   ))}
@@ -128,7 +128,7 @@ function renderSectionTextContent(section: ServiceSection) {
             ))}
           </div>
           {section.cropFooterText && (
-            <p className="mt-8 text-gray-600 text-base">{section.cropFooterText}</p>
+            <p className="mt-8 text-gray-900 text-base">{section.cropFooterText}</p>
           )}
         </div>
       )}
@@ -237,7 +237,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         service.compactSections ? (
           <>
             {sectionGroups.map((group, gIndex) => (
-              <SectionWrapper key={gIndex} background={gIndex % 2 === 0 ? "white" : "light"}>
+              <SectionWrapper key={gIndex} background={gIndex % 2 === 0 ? "white" : "light"} compact>
                 {group.length === 1 && group[0].fullWidth ? (
                   <div className="w-full">
                     {renderSectionTextContent(group[0])}
@@ -257,7 +257,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         ) : (
         <>
           {service.sections.map((section, index) => (
-            <SectionWrapper key={index} background={index % 2 === 0 ? "white" : "light"}>
+            <SectionWrapper key={index} background={index % 2 === 0 ? "white" : "light"} compact>
               {section.fullWidth ? (
                 // Full-width layout without image
                 <div key={index} className="w-full">
@@ -277,11 +277,55 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   } ${section.centerHeading ? "text-center" : ""}`}>
                     {section.title}
                   </h3>
-                  <div className="text-gray-600 leading-relaxed space-y-4 whitespace-pre-line">
+                  <div className="text-gray-900 leading-relaxed space-y-4 whitespace-pre-line">
                     {section.description.split('\n').map((paragraph, pIndex) => (
                       <p key={pIndex}>{parseMarkdown(paragraph)}</p>
                     ))}
                   </div>
+
+                  {/* Bullet Points */}
+                  {section.bulletPoints && section.bulletPoints.length > 0 && (
+                    <ul className={`mt-6 space-y-3 ${section.roundBullets || section.numberedPoints ? "list-none" : ""}`}>
+                      {section.bulletPoints.map((point, pIndex) => (
+                        <li key={pIndex} className="flex items-start gap-3">
+                          {section.numberedPoints ? (
+                            <span className="text-gray-900 flex-shrink-0 mt-0.5">{pIndex + 1}.</span>
+                          ) : section.roundBullets ? (
+                            <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
+                          ) : (
+                            <svg className="w-5 h-5 text-primary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          )}
+                          <span className="text-gray-900 leading-relaxed">{parseMarkdown(point)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* Bullet Items with sub-points */}
+                  {section.bulletItems && section.bulletItems.length > 0 && (
+                    <ul className="mt-6 space-y-3 list-none">
+                      {section.bulletItems.map((item, bIndex) => (
+                        <li key={bIndex}>
+                          <div className="flex items-start gap-3">
+                            <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
+                            <span className="text-gray-900 leading-relaxed">{parseMarkdown(item.text)}</span>
+                          </div>
+                          {item.subPoints && item.subPoints.length > 0 && (
+                            <ul className="mt-2 ml-6 space-y-2 list-none">
+                              {item.subPoints.map((sub, sIndex) => (
+                                <li key={sIndex} className="flex items-start gap-3">
+                                  <span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-2" />
+                                  <span className="text-gray-900 leading-relaxed">{parseMarkdown(sub)}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
                   {/* Process Gallery if enabled */}
                   {section.showProcessGallery && (
@@ -373,7 +417,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                               {feature.title}
                             </h4>
                             {/* Description */}
-                            <p className="text-sm text-gray-600 leading-relaxed">
+                            <p className="text-sm text-gray-900 leading-relaxed">
                               {feature.description}
                             </p>
                           </div>
@@ -381,7 +425,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                       </div>
                       {/* Footer text */}
                       {section.footerText && (
-                        <p className="mt-12 text-gray-600 text-lg">
+                        <p className="mt-12 text-gray-900 text-lg">
                           {section.footerText}
                         </p>
                       )}
@@ -407,6 +451,27 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     </div>
                   )}
 
+                  {/* Government Logos if enabled */}
+                  {section.showGovLogos && (
+                    <div className="mt-10 flex flex-wrap items-stretch justify-center gap-8">
+                      {[
+                        { src: "/images/partners/midh.jpg", name: "MIDH", full: "Mission for Integrated Development of Horticulture" },
+                        { src: "/images/partners/nabard.jpg", name: "NABARD", full: "National Bank for Agriculture and Rural Development" },
+                        { src: "/images/partners/nhb.jpg", name: "NHB", full: "National Horticulture Board" },
+                      ].map((org) => (
+                        <div key={org.name} className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-xl px-8 py-6 shadow-sm w-[200px]">
+                          <img
+                            src={org.src}
+                            alt={org.name}
+                            className="h-[100px] w-[100px] object-contain"
+                          />
+                          <p className="text-base font-bold text-dark text-center">{org.name}</p>
+                          <p className="text-xs text-gray-900 text-center leading-snug">{org.full}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
                   {/* Coming Soon if enabled */}
                   {section.showComingSoon && (
                     <div className="mt-10 flex flex-col items-center justify-center py-12 px-8 bg-white border border-dashed border-primary/40 rounded-xl text-center">
@@ -422,7 +487,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
                   {/* Footer Note for full-width sections */}
                   {section.fullWidth && section.footerNote && (
-                    <div className="mt-8 text-gray-600 leading-relaxed space-y-2">
+                    <div className="mt-8 text-gray-900 leading-relaxed space-y-2">
                       {section.footerNote.split('\n').map((line, lIndex) => (
                         <p key={lIndex}>{parseMarkdown(line)}</p>
                       ))}
@@ -481,7 +546,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     <h3 className="font-heading text-3xl md:text-4xl uppercase text-dark mb-6">
                       {section.title}
                     </h3>
-                    <div className="text-gray-600 leading-relaxed space-y-4 whitespace-pre-line">
+                    <div className="text-gray-900 leading-relaxed space-y-4 whitespace-pre-line">
                       {section.description.split('\n').map((paragraph, pIndex) => (
                         <p key={pIndex}>{parseMarkdown(paragraph)}</p>
                       ))}
@@ -493,7 +558,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                         {section.bulletPoints.map((point, pIndex) => (
                           <li key={pIndex} className="flex items-start gap-3">
                             {section.numberedPoints ? (
-                              <span className="text-gray-600 flex-shrink-0 mt-0.5">{pIndex + 1}.</span>
+                              <span className="text-gray-900 flex-shrink-0 mt-0.5">{pIndex + 1}.</span>
                             ) : section.roundBullets ? (
                               <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
                             ) : (
@@ -511,7 +576,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                                 />
                               </svg>
                             )}
-                            <span className="text-gray-600 leading-relaxed">{parseMarkdown(point)}</span>
+                            <span className="text-gray-900 leading-relaxed">{parseMarkdown(point)}</span>
                           </li>
                         ))}
                       </ul>
@@ -524,14 +589,14 @@ export default async function ServicePage({ params }: ServicePageProps) {
                           <li key={bIndex}>
                             <div className="flex items-start gap-3">
                               <span className="w-1.5 h-1.5 rounded-full bg-dark flex-shrink-0 mt-2" />
-                              <span className="text-gray-600 leading-relaxed">{parseMarkdown(item.text)}</span>
+                              <span className="text-gray-900 leading-relaxed">{parseMarkdown(item.text)}</span>
                             </div>
                             {item.subPoints && item.subPoints.length > 0 && (
                               <ul className="mt-2 ml-6 space-y-2 list-none">
                                 {item.subPoints.map((sub, sIndex) => (
                                   <li key={sIndex} className="flex items-start gap-3">
                                     <span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-2" />
-                                    <span className="text-gray-600 leading-relaxed">{parseMarkdown(sub)}</span>
+                                    <span className="text-gray-900 leading-relaxed">{parseMarkdown(sub)}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -543,7 +608,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
                     {/* Footer Note if provided */}
                     {section.footerNote && (
-                      <div className="mt-6 text-gray-600 leading-relaxed space-y-2">
+                      <div className="mt-6 text-gray-900 leading-relaxed space-y-2">
                         {section.footerNote.split('\n').map((line, lIndex) => (
                           <p key={lIndex}>{parseMarkdown(line)}</p>
                         ))}
@@ -565,7 +630,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                                 {category.crops.map((crop, cropIdx) => (
                                   <div
                                     key={cropIdx}
-                                    className={`py-2 px-3 text-sm text-gray-600 ${
+                                    className={`py-2 px-3 text-sm text-gray-900 ${
                                       cropIdx % 2 === 1 ? "bg-gray-50" : ""
                                     }`}
                                   >
@@ -578,7 +643,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                         </div>
                         {/* Footer Text */}
                         {section.cropFooterText && (
-                          <p className="mt-8 text-gray-600 text-base">
+                          <p className="mt-8 text-gray-900 text-base">
                             {section.cropFooterText}
                           </p>
                         )}
@@ -621,7 +686,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <h2 className="font-heading text-4xl md:text-5xl uppercase text-dark mb-8">
             Why It Matters
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-900 leading-relaxed">
             {service.whyItMatters}
           </p>
         </SectionWrapper>

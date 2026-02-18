@@ -23,7 +23,7 @@ const SERVICES = [
     description:
       "Smart planning for land utilization, irrigation, and greenhouse/hydroponic structures to maximize efficiency.",
     icon: IconSiteDesign,
-    href: "/services/site-design-planning",
+    href: "/services/site-audit-dpr-subsidy",
   },
   {
     title: "Turnkey Setup",
@@ -37,7 +37,7 @@ const SERVICES = [
     description:
       "Professional farm operations and crop management support to ensure productivity and profitability.",
     icon: IconFarmManagement,
-    href: "/services/farm-management",
+    href: "/services/turnkey-setup",
   },
   {
     title: "Training & Capacity Building",
@@ -51,22 +51,22 @@ const SERVICES = [
     description:
       "Secure partnerships with assured buyback models, giving farmers stability and guaranteed markets.",
     icon: IconContractFarming,
-    href: "/services/contract-farming",
+    href: "/services/turnkey-setup",
   },
   {
     title: "Smart Agri Subsidy Support",
     description:
       "End-to-end guidance on government schemes, subsidies, and approvals to maximize project returns.",
     icon: IconSubsidySupport,
-    href: "/services/subsidy-support",
+    href: "/services/site-audit-dpr-subsidy",
   },
-  {
-    title: "Recycling (Plastic Recycling)",
-    description:
-      "Innovative recycling solutions to promote sustainability and reduce farm waste.",
-    icon: IconRecycling,
-    href: "/services/recycling",
-  },
+  // {
+  //   title: "Recycling (Plastic Recycling)",
+  //   description:
+  //     "Innovative recycling solutions to promote sustainability and reduce farm waste.",
+  //   icon: IconRecycling,
+  //   href: "/services/recycling",
+  // },
 ];
 
 export default function ServicesPage() {
@@ -108,7 +108,7 @@ export default function ServicesPage() {
               <h3 className="font-heading text-lg uppercase tracking-wide mb-3 text-dark group-hover:text-primary transition-colors">
                 {service.title}
               </h3>
-              <p className="text-gray-brand text-sm leading-relaxed">
+              <p className="text-gray-900 text-sm leading-relaxed">
                 {service.description}
               </p>
             </Link>

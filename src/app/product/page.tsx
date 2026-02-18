@@ -83,7 +83,7 @@ export default function ProductPage() {
           <h2 className="font-heading text-3xl md:text-5xl uppercase text-dark mb-4">
             Our Product Range
           </h2>
-          <p className="text-gray-brand max-w-2xl mx-auto">
+          <p className="text-gray-900 max-w-2xl mx-auto">
             Everything you need to set up and run a successful hydroponic farm
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function ProductPage() {
                   <h3 className="font-heading text-base md:text-lg uppercase tracking-wide text-dark mb-1">
                     {product.title}
                   </h3>
-                  <p className="text-gray-brand text-xs leading-relaxed mb-3">
+                  <p className="text-gray-900 text-xs leading-relaxed mb-3">
                     {product.description}
                   </p>
                   <span className="inline-flex items-center gap-1 text-primary font-medium text-xs uppercase tracking-wider transition-colors group-hover:text-primary-dark">

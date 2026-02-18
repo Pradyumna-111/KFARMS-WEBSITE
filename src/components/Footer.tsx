@@ -76,21 +76,16 @@ export default function Footer() {
             <h3 className="font-heading text-xl uppercase tracking-wider">Our Services</h3>
             <ul className="mt-4 space-y-3">
               {[
-                "Site Design & Planning",
-                "Turnkey Setup",
-                "Farm Management",
-                "Training",
-                "Contract Farming",
-                "Subsidy",
-                "Recycling",
-                "Soil Farming",
+                { label: "Site Audit, DPR & Subsidy", href: "/services/site-audit-dpr-subsidy" },
+                { label: "Turnkey Setup", href: "/services/turnkey-setup" },
+                { label: "Training", href: "/services/training" },
               ].map((service) => (
-                <li key={service}>
+                <li key={service.href}>
                   <Link
-                    href="/services"
+                    href={service.href}
                     className="text-sm text-gray-400 transition-colors hover:text-primary"
                   >
-                    {service}
+                    {service.label}
                   </Link>
                 </li>
               ))}

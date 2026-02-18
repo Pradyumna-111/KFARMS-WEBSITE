@@ -42,7 +42,7 @@ export default function Card({
         </div>
       )}
       <h3 className="mb-2 text-xl font-semibold text-dark">{title}</h3>
-      <p className="text-gray-brand leading-relaxed">{description}</p>
+      <p className="text-gray-900 leading-relaxed">{description}</p>
     </div>
   );
 

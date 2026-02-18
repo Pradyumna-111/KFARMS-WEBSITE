@@ -69,11 +69,11 @@ export function PolyhouseCarousel({ items }: PolyhouseCarouselProps) {
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 snap-start w-[85%] md:w-[48%]"
+            className="flex-shrink-0 snap-start w-[65%] md:w-[30%]"
           >
             <div
               className="relative bg-light-gray flex items-center justify-center overflow-hidden"
-              style={{ aspectRatio: "4/3" }}
+              style={{ aspectRatio: "3/2" }}
             >
               {item.image && (
                 <img

@@ -85,7 +85,7 @@ export default function PortfolioPage() {
             />
           ))}
         </div>
-        <p className="mt-8 text-center text-sm text-gray-brand">
+        <p className="mt-8 text-center text-sm text-gray-900">
           [TODO: Replace with real project data and images]
         </p>
       </SectionWrapper>

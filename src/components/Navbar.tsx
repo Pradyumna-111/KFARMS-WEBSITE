@@ -129,7 +129,7 @@ export default function Navbar() {
                     <li key={child.href}>
                       <Link
                         href={child.href}
-                        className="block py-2 text-sm text-gray-brand hover:text-primary"
+                        className="block py-2 text-sm text-gray-900 hover:text-primary"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {child.label}
